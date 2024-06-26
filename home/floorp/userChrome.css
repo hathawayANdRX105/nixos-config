@@ -1,0 +1,59 @@
+/*************************************************************************************************************************************************************************************************************************************************************
+
+"userChrome.css" is a custom CSS file that can be used to specify CSS style rules for Floorp's interface (NOT internal site) using "chrome" privileges.
+For instance, if you want to hide the tab bar, you can use the following CSS rule:
+
+**************************************
+#TabsToolbar {                       *
+    display: none !important;        *
+}                                    *
+**************************************
+
+NOTE: You can use the userChrome.css file without change preferences (about:config)
+
+Quote: https://userChrome.org | https://github.com/topics/userchrome
+
+************************************************************************************************************************************************************************************************************************************************************/
+
+@charset "UTF-8";
+
+@-moz-document url(chrome://browser/content/browser.xhtml){
+/* Please write your custom CSS under this line*/
+
+#sidebar-box {
+    --sidebar-hover-width: 2px;
+    position: relative !important;
+    overflow-x: hidden !important;
+    margin-right: calc(var(--sidebar-hover-width) * -1) !important;
+    min-width: var(--sidebar-hover-width) !important;
+    max-width: var(--sidebar-hover-width) !important;
+    border-right: 2px solid var(--sidebar-border-color);
+    z-index: 2147483647 !important;
+}
+
+#sidebar-box:hover {
+    --sidebar-visible-width: 350px;
+    margin-right: calc(var(--sidebar-visible-width) * -1) !important;
+    min-width: var(--sidebar-visible-width) !important;
+    max-width: var(--sidebar-visible-width) !important;
+}
+
+#sidebar {
+    opacity: 0 !important;
+}
+
+#sidebar-box:hover #sidebar {
+    opacity: 1 !important;
+}
+
+
+#sidebar-header {
+    display: none !important;
+}
+
+
+#sidebar-splitter {
+    display: none;
+}
+
+}

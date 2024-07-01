@@ -14,9 +14,7 @@
         (import ./bat.nix)
         (import ./git.nix)
         (import ./helix.nix)
-        # (import ./gitui.nix)
-        (import ./floorp.nix)
-        (import ./nekoray.nix)
+
         (import ./fuzzel.nix)
         (import ./kitty.nix)
 

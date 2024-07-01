@@ -12,17 +12,17 @@
       "$mainMod" = "SUPER";
 
       exec-once = [
-        "waybar &"
         "fcitx5 &"
         "hypridle &"
         "swww-daemon && swww img /etc/nixos/wallpaper/miku.jpg &"
+        "waybar &"
         # "hyprctl setcursor Bibata-Modern-Ice 24 &"
 
         "[workspace 5 silent] yesplaymusic"
         "[workspace 5 silent] nekoray"
-        "[workspace 1 silent] floorp"
-        "[workspace 1 silent] kitty"
-        "sleep 1 & [workspace 1]" # focus workspace 1
+        "[workspace 1] floorp"
+        "[workspace 1] kitty"
+        "sleep 2 && hyprctl dispatch workspace 1" # focus workspace 1
       ];
 
       input = {
@@ -67,8 +67,8 @@
       decoration = {
         rounding = 5;
 
-        active_opacity = 0.95;
-        inactive_opacity = 0.95;
+        # active_opacity = 0.95;
+        # inactive_opacity = 0.95;
 
         dim_inactive = true;
         dim_strength = 0.15;
@@ -221,8 +221,10 @@
         "opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
         "opacity 1.0 override 1.0 override, class:(Aseprite)"
         "opacity 1.0 override 1.0 override, class:(Unity)"
-        "opacity 0.95,title:^(kitty)$"
-        "opacity 1.0,title:^(floorp)$"
+        "opacity 0.9 0.9,title:^(kitty)$"
+        "opacity 0.9 0.9,class:^(kitty)$"
+        "opacity 1.0 override 1.0 override, title:^(floorp)$"
+        "opacity 1.0 override 1.0 override, class:^(floorp)$"
         "idleinhibit focus, class:^(mpv)$"
         "idleinhibit fullscreen, class:^(floorp)$"
         "float,class:^(pavucontrol)$"

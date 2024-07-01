@@ -1,13 +1,4 @@
-{ pkgs, config, ... }:
-{
-  fonts.fontconfig.enable = true;
-  home.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    twemoji-color-font
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-  ];
+{ pkgs, config, ... }: {
 
   gtk = {
     enable = true;
@@ -32,7 +23,7 @@
       size = 24;
     };
   };
-  
+
   home.pointerCursor = {
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;

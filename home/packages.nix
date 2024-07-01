@@ -1,14 +1,20 @@
-{ pkgs, ... }:
-{
-   home.packages = (with pkgs; [
+{ pkgs, ... }: {
+  services.flameshot.enable = true;
+
+  home.packages = (with pkgs; [
     kdePackages.dolphin # gui file manager
-    
+
+    # language
+    # rust-analyzer
+    rustup
     gcc
     gnumake
 
     # cmdline
-    zoxide   # cd replace
-    yazi     # teriminal file manager
+    zoxide # cd replace
+    yazi # teriminal file manager
+    eza # ls replace
+    gitui # git terminal gui
 
     # find 
     fzf
@@ -19,11 +25,15 @@
 
     # desktop
     swww
+    yesplaymusic
+    # wechat-uos
+    #    zed-editor
 
     hypridle
-#    zed-editor
-    
+    openssl
+
     unzip
     wget
   ]);
+
 }

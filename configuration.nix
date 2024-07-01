@@ -72,11 +72,47 @@
     };
   };
 
+  fonts = {
+    enableDefaultPackages = true;
+    fontconfig.enable = true;
+    fontDir.enable = true;
+
+    packages = with pkgs; [
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      twemoji-color-font
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      wqy_zenhei
+    ];
+  };
+
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
+
+  # key remap
+  services.keyd = {
+    enable = true;
+    keyboards = {
+      # The name is just the name of the configuration file, it does not really matter
+      default = {
+        ids = [
+          "*"
+        ]; # what goes into the [id] section, here we select all keyboards
+        # Everything but the ID section:
+        settings = {
+          # The main layer, if you choose to declare it in Nix
+          main = {
+            capslock = "layer(control)";
+            rightalt = "capslock";
+          };
+        };
+      };
+    };
+  };
 
   # hyprlock unblock
   security.pam.services.hyprlock = { };
@@ -93,9 +129,7 @@
 
   # nvidia
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia" ];
-
-
+  services.xserver.videoDrivers = [ "nvidia-dkms" ];
   hardware.nvidia = {
     modesetting.enable = true;
 
@@ -108,26 +142,31 @@
     open = false;
   };
 
-
-  services.xserver.desktopManager.runXdgAutostartIfNone = true;
+  # services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
   # default session for autologin
   programs.hyprland.enable = true;
 
   # Enable the X11 windowing system.
-  # services.xserver.enable = true;
-  services.xserver = {
-    enable = true;
-    xkb.layout = "us";
-  };
+  services.xserver.enable = true;
 
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "b111011l";
+  services.displayManager = {
+    # sddm = {
+    #   enable = false;
+    #   wayland.enable = true;
+    #   autoNumlock = true; # keyboard auto open numlock
+    #   theme = "catppuccin-mocha";
+    #   package = pkgs.kdePackages.sddm;
+    # };
+
+    autoLogin = {
+      enable = true;
+      user = "b111011l";
+    };
   };
 
   # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
+  services.xserver.xkb.layout = "us";
   # services.xserver.xkb.options = "eurosign:e,caps:escape";
 
   # Enable CUPS to print documents.
@@ -149,12 +188,18 @@
   environment.systemPackages = with pkgs; [
     git
     helix
-
-    ntfs3g # ntfs file type
+    (pkgs.catppuccin-sddm.override {
+      flavor = "mocha";
+      font = "Noto Sans";
+      fontSize = "9";
+      background = "${./wallpaper/4.jpg}";
+      loginBackground = true;
+    })
   ];
 
   environment.variables.EDITOR = "helix";
   environment.variables.SUDO_EDITOR = "helix";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

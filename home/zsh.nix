@@ -1,12 +1,12 @@
-{ hostname, config, pkgs, ...}: 
-{
+{ hostname, config, pkgs, ... }: {
   programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting = {
       enable = true;
-      highlighters = ["main" "brackets" "pattern" "cursor" "regexp" "root" "line"];
+      highlighters =
+        [ "main" "brackets" "pattern" "cursor" "regexp" "root" "line" ];
     };
 
     history = {
@@ -33,15 +33,16 @@
       cd = "z";
       cat = "bat";
 
-      l = "eza --icons  -a --group-directories-first -1"; #EZA_ICON_SPACING=2
+      l = "eza --icons  -a --group-directories-first -1"; # EZA_ICON_SPACING=2
       ll = "eza --icons  -a --group-directories-first -1 --no-user --long";
       tree = "eza --icons --tree --group-directories-first";
 
       # Nixos
-      cdos = "sudoedit /etc/nixos/configuration.nix";
+      cdos = "hx /etc/nixos";
       nix-switch = "sudo nixos-rebuild switch";
       nix-flake-update = "sudo nix flake update ~/nixos-config#";
-      nix-clean = "sudo nix-collect-garbage && sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
+      nix-clean =
+        "sudo nix-collect-garbage && sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
     };
   };
 

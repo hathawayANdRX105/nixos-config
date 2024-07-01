@@ -1,9 +1,5 @@
-
-{ config, pkgs, ... }:
-{
-  home.packages = with pkgs; [
-    wayland
-  ];
+{ config, pkgs, ... }: {
+  home.packages = with pkgs; [ wayland ];
 
   #systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 
@@ -16,15 +12,17 @@
       "$mainMod" = "SUPER";
 
       exec-once = [
-        "waybar"
-        "fcitx5"
-        "hypridle"
-        "swww-daemon & swww img /etc/nixos/wallpaper/miku.jpg"
+        "waybar &"
+        "fcitx5 &"
+        "hypridle &"
+        "swww-daemon && swww img /etc/nixos/wallpaper/miku.jpg &"
         # "hyprctl setcursor Bibata-Modern-Ice 24 &"
 
+        "[workspace 5 silent] yesplaymusic"
+        "[workspace 5 silent] nekoray"
         "[workspace 1 silent] floorp"
         "[workspace 1 silent] kitty"
-        "[workspace 5 silent] nekoray"
+        "sleep 1 & [workspace 1]" # focus workspace 1
       ];
 
       input = {
@@ -32,11 +30,8 @@
         numlock_by_default = true;
         follow_mouse = 1;
         sensitivity = -0.3;
-        touchpad = {
-          natural_scroll = false;
-        };
-      }; 
-    
+        touchpad = { natural_scroll = false; };
+      };
 
       general = {
         layout = "dwindle";
@@ -48,9 +43,8 @@
         "col.inactive_border" = "0x00000000";
       };
 
-      
       misc = {
-        #disable_autoreload = true;
+        disable_autoreload = true; # use "hyprctl reload" manually reload config
         disable_hyprland_logo = true;
         always_follow_on_dnd = true;
         layers_hog_keyboard_focus = true;
@@ -75,9 +69,9 @@
 
         active_opacity = 0.95;
         inactive_opacity = 0.95;
-        
+
         dim_inactive = true;
-        dim_strength = 0.2;
+        dim_strength = 0.15;
 
         blur.enabled = false;
         drop_shadow = false;
@@ -121,10 +115,13 @@
         # browser
         "$mainMod, E, exec, dolphin"
 
-        # wofi
+        # fuzzel
         "$mainMod, Tab, exec, pkill fuzzel || fuzzel --show drun"
-        
-        "$mainMod, Q, killactive," 
+
+        "$mainMod, Q, killactive,"
+
+        "$mainMod, F11, fullscreen, 0"
+        "$mainMod, F12, fullscreen, 1"
 
         # switch focus
         "$mainMod, left, movefocus, l"
@@ -164,7 +161,6 @@
         "$mainMod ALT, K, moveactive, 0 -80"
         "$mainMod ALT, J, moveactive, 0 80"
 
-        
         # Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
@@ -197,17 +193,15 @@
         "size 1200 725,imv"
         "float,mpv"
         "center,mpv"
-        "tile,Aseprite"
         "size 1200 725,mpv"
         "float,title:^(float_kitty)$"
         "center,title:^(float_kitty)$"
         "size 950 600,title:^(float_kitty)$"
         "float,audacious"
         "workspace 8 silent, audacious"
-        "pin,wofi"
-        "float,wofi"
-        "noborder,wofi"
-        "tile, neovide"
+        "pin,fuzzel"
+        "float,fuzzel"
+        "noborder,fuzzel"
         "idleinhibit focus,mpv"
         "float,udiskie"
         "float,title:^(Transmission)$"
@@ -227,8 +221,10 @@
         "opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
         "opacity 1.0 override 1.0 override, class:(Aseprite)"
         "opacity 1.0 override 1.0 override, class:(Unity)"
+        "opacity 0.95,title:^(kitty)$"
+        "opacity 1.0,title:^(floorp)$"
         "idleinhibit focus, class:^(mpv)$"
-        "idleinhibit fullscreen, class:^(firefox)$"
+        "idleinhibit fullscreen, class:^(floorp)$"
         "float,class:^(pavucontrol)$"
         "float,class:^(SoundWireServer)$"
         "float,class:^(.sameboy-wrapped)$"
@@ -247,15 +243,8 @@
 
     };
 
-    extraConfig = "
-      monitor=eDP-1, disable
-      monitor=,preferred, auto, 1
-      # monitor=,preferred, auto, 1 # don't scale
-
-      xwayland {
-        force_zero_scaling = true
-      }
-    ";
+    extraConfig =
+      "\n      monitor=eDP-1, disable\n      monitor=Unknown-1, disable # not for sure why this monistor exists\n      monitor=,preferred, auto, 1\n      # monitor=,preferred, auto, 1 # don't scale\n\n      xwayland {\n        force_zero_scaling = true\n      }\n    ";
   };
 
   home.sessionVariables = {
@@ -280,6 +269,10 @@
     XDG_SESSION_TYPE = "wayland";
     SDL_VIDEODRIVER = "wayland";
     CLUTTER_BACKEND = "wayland";
+
+    LIBVA_DRIVER_NAME = "nvidia";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
   };
 
-} 
+}

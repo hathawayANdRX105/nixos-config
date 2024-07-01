@@ -1,5 +1,4 @@
-{ config, ... }:
-{
+{ config, ... }: {
   services.hypridle = {
     enable = true;
     settings = {
@@ -14,7 +13,7 @@
           on-timeout = "loginctl lock-session";
         }
         {
-          timeout = 250;
+          timeout = 255;
           on-timeout = "brightnessctl -sd dell::kbd_backlight set 0";
           on-resume = "brightnessctl -rf dell::kbd_backlight";
         }
@@ -24,7 +23,7 @@
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 900;
+          timeout = 600;
           on-timeout = "systemctl suspend";
         }
       ];

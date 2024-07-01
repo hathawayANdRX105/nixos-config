@@ -2,11 +2,9 @@
   services.flameshot.enable = true;
 
   home.packages = (with pkgs; [
-    kdePackages.dolphin # gui file manager
 
     # language
-    # rust-analyzer
-    rustup
+    rustup # rust toolchain install rust-src | rust-analyzer
     gcc
     gnumake
 
@@ -24,10 +22,12 @@
     mpv # video player
 
     # desktop
-    swww
-    yesplaymusic
+    swww # wallpaper
+    yesplaymusic # music player
+    floorp # browser
+    nekoray # proxy
     # wechat-uos
-    #    zed-editor
+    # zed-editor
 
     hypridle
     openssl

@@ -4,7 +4,7 @@
     userName = "hathawayANdRX105";
     userEmail = "2635254302@qq.com";
     extraConfig = {
-      url = { "https://gitclone.com/".insteadOf = "https://"; };
+      # url = { "https://gitclone.com/".insteadOf = "https://"; };
       safe.directory = "/etc/nixos";
     };
   };

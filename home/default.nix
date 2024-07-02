@@ -1,4 +1,4 @@
-{ inputs, config, pkgs, ... }: {
+{ inputs, config, pkgs, username, ... }: {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   home-manager = {
@@ -6,7 +6,7 @@
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
 
-    users.b111011l = {
+    users.${username} = {
       imports = [
         (import ./packages.nix)
         (import ./zsh.nix)
@@ -25,8 +25,8 @@
         (import ./hyprland.nix)
       ];
 
-      home.username = "b111011l";
-      home.homeDirectory = "/home/b111011l";
+      home.username = "${username}";
+      home.homeDirectory = "/home/${username}";
 
       home.stateVersion = "24.05";
       programs.home-manager.enable = true;
@@ -34,9 +34,9 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.b111011l = {
+  users.users.${username} = {
     isNormalUser = true;
-    home = "/home/b111011l";
+    home = "/home/${username}";
     group = "users";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
     shell = pkgs.zsh;
@@ -54,9 +54,9 @@
   security.sudo.configFile = ''
     root     ALL=(ALL:ALL)    SETENV: ALL
     %wheel   ALL=(ALL:ALL)    SETENV: ALL
-    b111011l ALL=(ALL:ALL)    SETENV: ALL
+    ${username} ALL=(ALL:ALL)    SETENV: ALL
   '';
 
-  nix.settings.allowed-users = [ "b111011l" ];
-  nix.settings.trusted-users = [ "b111011l" ];
+  nix.settings.allowed-users = [ "${username}" ];
+  nix.settings.trusted-users = [ "${username}" ];
 }

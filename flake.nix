@@ -15,22 +15,29 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-   # nekoray = {
-   #   url = "github:MatsuriDayo/nekoray";
-   #   inputs.nixpkgs.follows = "nixpkgs";
-   # };
-  };
-
-  outputs = { self, nixpkgs, home-manager, ... } @inputs: {
-    nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs nixpkgs; };
-      modules = [
-        ./configuration.nix
-        ./home
-      ];
-
+    nur-xddxdd = {
+      url = "github:xddxdd/nur-packages";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+    # nixos-cn = {
+    #   url = "github:nixos-cn/flakes";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+    let
+      system = "x86_64-linux";
+      username = "b111011l";
+    in {
+      nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = { inherit inputs nixpkgs username; };
+        modules = [
+          ./configuration.nix
+          ./home
+          inputs.nur-xddxdd.nixosModules.setupOverlay
+        ];
+      };
+    };
 }

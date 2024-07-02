@@ -2,13 +2,14 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, options, ... }:
+{ config, lib, pkgs, options, username, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
+  nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
   # Use the systemd-boot EFI boot loader.
   #boot.loader.systemd-boot.enable = true;
   #boot.loader.efi.canTouchEfiVariables = true;
@@ -126,7 +127,7 @@
 
   services.displayManager.autoLogin = {
     enable = true;
-    user = "b111011l";
+    user = "${username}";
   };
 
   # Configure keymap in X11

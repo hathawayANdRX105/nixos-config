@@ -1,7 +1,8 @@
 { pkgs, ... }: {
-  services.flameshot.enable = true;
-
   home.packages = (with pkgs; [
+    slurp
+    grim
+    sway-contrib.grimshot
 
     # language
     rustup # rust toolchain install rust-src | rust-analyzer

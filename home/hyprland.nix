@@ -29,7 +29,7 @@
         kb_layout = "us";
         numlock_by_default = true;
         follow_mouse = 1;
-        sensitivity = -0.3;
+        sensitivity = -0.5;
         touchpad = { natural_scroll = false; };
       };
 
@@ -132,6 +132,9 @@
         "$mainMod, L, movefocus, r"
         "$mainMod, K, movefocus, u"
         "$mainMod, J, movefocus, d"
+
+        # Screenshot
+        ", Print, exec, grimshot copy area"
 
         # window control
         "$mainMod SHIFT, left, movewindow, l"
@@ -245,8 +248,15 @@
 
     };
 
-    extraConfig =
-      "\n      monitor=eDP-1, disable\n      monitor=Unknown-1, disable # not for sure why this monistor exists\n      monitor=,preferred, auto, 1\n      # monitor=,preferred, auto, 1 # don't scale\n\n      xwayland {\n        force_zero_scaling = true\n      }\n    ";
+    extraConfig = ''
+      monitor=eDP-1, disable
+      monitor=Unknown-1, disable # not for sure why this monistor exists
+      monitor=,preferred, auto, 1
+      # monitor=,preferred, auto, 1 # don't scale
+      xwayland {
+        force_zero_scaling = true
+      }
+    '';
   };
 
   home.sessionVariables = {

@@ -136,6 +136,14 @@
         # Screenshot
         ", Print, exec, grimshot copy area"
 
+        # media and volume controls
+        ",XF86AudioRaiseVolume,exec, pactl set-sink-volume @DEFAULT_SINK@ +2%"
+        ",XF86AudioLowerVolume,exec, pactl set-sink-volume @DEFAULT_SINK@ -2%"
+
+        # laptop brigthness
+        ",XF86MonBrightnessUp, exec, brightnessctl set 5%+"
+        ",XF86MonBrightnessDown, exec, brightnessctl set 5%-"
+
         # window control
         "$mainMod SHIFT, left, movewindow, l"
         "$mainMod SHIFT, right, movewindow, r"
@@ -206,6 +214,8 @@
         "float,fuzzel"
         "noborder,fuzzel"
         "idleinhibit focus,mpv"
+        "float,wechat-uos"
+        "size 1000 600,wechat-uos"
         "float,udiskie"
         "float,title:^(Transmission)$"
         "float,title:^(Volume Control)$"

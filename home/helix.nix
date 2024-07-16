@@ -1,5 +1,4 @@
-{config, pkgs, lib, ... }:
-{
+{ config, pkgs, lib, ... }: {
   programs.helix = {
     enable = true;
     defaultEditor = true;
@@ -7,6 +6,7 @@
     languages = {
       language = [
         { name = "rust"; }
+        { name = "python"; }
         {
           name = "nix";
           auto-format = true;
@@ -14,15 +14,8 @@
         }
       ];
 
-      language-server.rust-analyzer.config.check = {
-        command = "clippy";
-      };
+      language-server.rust-analyzer.config.check = { command = "clippy"; };
     };
-
-    # themes.tokyonight_moon_transparent = {
-    #   "inherits" = "tokyonight_moon";
-    #   "ui.background" = { };
-    # };
 
     settings = {
       theme = "tokyonight_moon";
@@ -43,18 +36,9 @@
         file-picker.hidden = false;
 
         statusline = {
-          left = [
-            "spinner"
-            "spacer"
-            "mode"
-            "spacer"
-            "diagnostics"
-          ];
-          
-          center = [
-            "file-modification-indicator"
-            "file-base-name"
-          ];
+          left = [ "spinner" "spacer" "mode" "spacer" "diagnostics" ];
+
+          center = [ "file-modification-indicator" "file-base-name" ];
 
           right = [
             "version-control"
@@ -67,7 +51,7 @@
 
         lsp.display-inlay-hints = true;
         lsp.display-messages = true;
-        
+
         soft-wrap.enable = true;
       };
 
@@ -79,7 +63,7 @@
         "A-\\" = ":config-open";
 
         "A-h" = ":buffer-previous";
-        "A-l" = ":buffer-next"; 
+        "A-l" = ":buffer-next";
 
         space.q = ":buffer-close!";
       };
@@ -115,7 +99,7 @@
         "A-h" = ":buffer-previous";
         "A-l" = ":buffer-next";
       };
-  
+
     };
   };
 }

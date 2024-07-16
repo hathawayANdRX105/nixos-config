@@ -22,14 +22,17 @@
         "[workspace 5 silent] nekoray"
         "[workspace 1] floorp"
         "[workspace 1] kitty"
-        "sleep 2 && hyprctl dispatch workspace 1" # focus workspace 1
+        "[workspace 2] wechat-uos"
+        "[workspace 3] floorp 'https://leetcode.cn/'"
+        "[workspace 3] p3x-onenote"
+        "sleep 5 && hyprctl dispatch workspace 1" # lastly focus workspace 1
       ];
 
       input = {
         kb_layout = "us";
         numlock_by_default = true;
         follow_mouse = 1;
-        sensitivity = -0.5;
+        sensitivity = -0.7;
         touchpad = { natural_scroll = false; };
       };
 
@@ -67,11 +70,11 @@
       decoration = {
         rounding = 5;
 
-        # active_opacity = 0.95;
-        # inactive_opacity = 0.95;
+        active_opacity = 0.98;
+        inactive_opacity = 0.98;
 
         dim_inactive = true;
-        dim_strength = 0.15;
+        dim_strength = 7.5e-2;
 
         blur.enabled = false;
         drop_shadow = false;
@@ -105,6 +108,15 @@
         ];
       };
 
+      # kitty & floorp would consume the keystroke
+      # bindn = [
+      #   "CTRL&SHIFT&ALT, P,     pass, class:yesplaymusic"
+      #   "CTRL&SHIFT&ALT, left,  pass, class:yesplaymusic"
+      #   "CTRL&SHIFT&ALT, right, pass, class:yesplaymusic"
+      #   "CTRL&SHIFT&ALT, up,    pass, class:yesplaymusic"
+      #   "CTRL&SHIFT&ALT, down,  pass, class:yesplaymusic"
+      # ];
+
       bind = [
         # terminal
         "$mainMod, Return, exec, kitty"
@@ -132,6 +144,13 @@
         "$mainMod, L, movefocus, r"
         "$mainMod, K, movefocus, u"
         "$mainMod, J, movefocus, d"
+
+        # "CTRL, T, pass, class:floorp"
+        # "Control_L&Alt_L, left,  fullscreen, 0"
+        # "CTRL, up, fullscreen, 0"
+        # "CTRL, left,  pass, ^(.*yesplaymusic)$"
+        # "CTRL, right, pass, ^(.*YesPlayMusic)$"
+        # "CTRL, down,  pass, ^(.*YesPlayMusic)$"
 
         # Screenshot
         ", Print, exec, grimshot copy area"
@@ -215,7 +234,7 @@
         "noborder,fuzzel"
         "idleinhibit focus,mpv"
         "float,wechat-uos"
-        "size 1000 600,wechat-uos"
+        "size 1200 900,class:wechat"
         "float,udiskie"
         "float,title:^(Transmission)$"
         "float,title:^(Volume Control)$"
@@ -236,8 +255,9 @@
         "opacity 1.0 override 1.0 override, class:(Unity)"
         "opacity 0.9 0.9,title:^(kitty)$"
         "opacity 0.9 0.9,class:^(kitty)$"
-        "opacity 1.0 override 1.0 override, title:^(floorp)$"
-        "opacity 1.0 override 1.0 override, class:^(floorp)$"
+        "opacity 0.9 0.9,title:^(.*YesPlayMusic.*)$"
+        "opacity 0.98 override 0.98 override, title:^(floorp)$"
+        "opacity 0.98 override 0.98 override, class:^(floorp)$"
         "idleinhibit focus, class:^(mpv)$"
         "idleinhibit fullscreen, class:^(floorp)$"
         "float,class:^(pavucontrol)$"
@@ -295,6 +315,7 @@
     LIBVA_DRIVER_NAME = "nvidia";
     GBM_BACKEND = "nvidia-drm";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    XDG_CURRENT_DESKTOP = "Hyprland";
   };
 
 }

@@ -26,8 +26,6 @@
     '';
 
     shellAliases = {
-      # record = "wf-recorder --audio=alsa_output.pci-0000_08_00.6.analog-stereo.monitor -f $HOME/Videos/$(date +'%Y%m%d%H%M%S_1.mp4')";
-
       # Utils
       c = "clear";
       cd = "z";
@@ -37,8 +35,11 @@
       ll = "eza --icons  -a --group-directories-first -1 --no-user --long";
       tree = "eza --icons --tree --group-directories-first";
 
+      # Python3
+      py = "python3";
+
       # Nixos
-      cdos = "hx /etc/nixos";
+      hxos = "hx /etc/nixos";
       nix-switch = "sudo nixos-rebuild switch";
       nix-flake-update = "sudo nix flake update ~/nixos-config#";
       nix-clean =

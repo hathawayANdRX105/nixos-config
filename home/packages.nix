@@ -10,6 +10,8 @@
     rustup # rust toolchain install rust-src | rust-analyzer
     gcc
     gnumake
+    python312
+    python312Packages.python-lsp-server
 
     # cmdline
     zoxide # cd replace
@@ -29,11 +31,9 @@
     yesplaymusic # music player
     floorp # browser
     nekoray # proxy
-    # wechat-uos
+    wechat-uos # wechat
+    p3x-onenote # onenote for linux
     # zed-editor
-    # inputs.nixos-cn.legacyPackages.${system}.netease-cloud-music
-    # inputs.nixos-cn.legacyPackages.${system}.wine-wechat
-    wechat-uos
 
     unzip
     wget

@@ -94,9 +94,6 @@
   # sudo
   security.sudo.enable = true;
 
-  # zsh
-  programs.zsh.enable = true;
-
   # enable opengl
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
@@ -130,10 +127,6 @@
     user = "${username}";
   };
 
-  # Configure keymap in X11
-  # services.xserver.xkb.layout = "us";
-  # services.xserver.xkb.options = "eurosign:e,caps:escape";
-
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
@@ -152,6 +145,9 @@
   environment.variables.EDITOR = "helix";
   environment.variables.SUDO_EDITOR = "helix";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  # zsh
+  programs.zsh.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

@@ -20,11 +20,11 @@
 
         "[workspace 5 silent] yesplaymusic"
         "[workspace 5 silent] nekoray"
-        "[workspace 1] floorp"
-        "[workspace 1] kitty"
-        "[workspace 2] wechat-uos"
-        "[workspace 3] floorp 'https://leetcode.cn/'"
-        "[workspace 3] p3x-onenote"
+        "[workspace 2 silent] wechat-uos"
+        # "[workspace 3 silent] floorp 'https://leetcode.cn/'"
+        # "[workspace 3 silent] p3x-onenote"
+        "[workspace 1 silent] kitty"
+        "[workspace 1 silent] floorp"
         "sleep 5 && hyprctl dispatch workspace 1" # lastly focus workspace 1
       ];
 
@@ -108,14 +108,14 @@
         ];
       };
 
-      # kitty & floorp would consume the keystroke
-      # bindn = [
-      #   "CTRL&SHIFT&ALT, P,     pass, class:yesplaymusic"
-      #   "CTRL&SHIFT&ALT, left,  pass, class:yesplaymusic"
-      #   "CTRL&SHIFT&ALT, right, pass, class:yesplaymusic"
-      #   "CTRL&SHIFT&ALT, up,    pass, class:yesplaymusic"
-      #   "CTRL&SHIFT&ALT, down,  pass, class:yesplaymusic"
-      # ];
+      # use wev find the keycode
+      bindn = [
+        ", code:173 ,execr, hyprctl dispatch sendshortcut CTRL, left,  class:yesplaymusic"
+        ", code:171 ,execr, hyprctl dispatch sendshortcut CTRL, right, class:yesplaymusic"
+        ", code:172 ,execr, hyprctl dispatch sendshortcut CTRL, P,     class:yesplaymusic"
+        ", code:174 ,execr, hyprctl dispatch sendshortcut CTRL, L,     class:yesplaymusic"
+        ", code:179 ,execr, hyprctl dispatch sendshortcut CTRL, M,     class:yesplaymusic"
+      ];
 
       bind = [
         # terminal
@@ -234,7 +234,7 @@
         "noborder,fuzzel"
         "idleinhibit focus,mpv"
         "float,wechat-uos"
-        "size 1200 900,class:wechat"
+        "size 900 700,class:wechat"
         "float,udiskie"
         "float,title:^(Transmission)$"
         "float,title:^(Volume Control)$"

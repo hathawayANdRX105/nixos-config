@@ -23,8 +23,10 @@
     fzf
     ripgrep
 
+    wev # wayland event viewer find keycode
     imv # image viwer
     mpv # video player
+    xdg-desktop-portal-hyprland
 
     # desktop
     swww # wallpaper
@@ -33,7 +35,6 @@
     nekoray # proxy
     wechat-uos # wechat
     p3x-onenote # onenote for linux
-    # zed-editor
 
     unzip
     wget

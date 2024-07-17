@@ -60,11 +60,14 @@
   i18n.inputMethod = {
     enabled = "fcitx5";
 
-    fcitx5 = {
-      addons = with pkgs; [ rime-data fcitx5-rime ];
+    fcitx5.waylandFrontend = true;
+    fcitx5.addons = let
+      config.packageOverrides = pkgs: {
+        fcitx5-rime =
+          pkgs.fcitx5-rime.override { rimeDataPkgs = [ ./rime-data-flypy ]; };
+      };
+    in with pkgs; [ fcitx5-rime rime-data fcitx5-chinese-addons ];
 
-      waylandFrontend = true;
-    };
   };
 
   fonts = {
@@ -95,9 +98,10 @@
   security.sudo.enable = true;
 
   # enable opengl
+  # hardware.graphics.enable = true;
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
-  hardware.opengl.driSupport32Bit = true;
+  # hardware.opengl.driSupport32Bit = true;
   hardware.enableRedistributableFirmware = true;
   hardware.opengl.extraPackages = with pkgs; [
     intel-compute-runtime

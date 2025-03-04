@@ -1,10 +1,11 @@
-{ inputs, config, pkgs, username, ... }: {
+{ inputs, config, pkgs, username, version, ... }: {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
+    backupFileExtension = "backup";
 
     users.${username} = {
       imports = [
@@ -14,6 +15,7 @@
         (import ./bat.nix)
         (import ./git.nix)
         (import ./helix.nix)
+        # (import ./yazi.nix)
 
         (import ./fuzzel.nix)
         (import ./kitty.nix)
@@ -25,10 +27,10 @@
         (import ./hyprland.nix)
       ];
 
-      home.username = "${username}";
+      home.username = username;
       home.homeDirectory = "/home/${username}";
 
-      home.stateVersion = "24.05";
+      home.stateVersion = version;
       programs.home-manager.enable = true;
     };
   };

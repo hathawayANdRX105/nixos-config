@@ -1,7 +1,7 @@
 { config, pkgs, ... }: {
   home.packages = with pkgs; [ wayland ];
 
-  #systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
+  systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -12,19 +12,19 @@
       "$mainMod" = "SUPER";
 
       exec-once = [
-        "fcitx5 &"
+        # "fcitx5 &"
         "hypridle &"
         "swww-daemon && swww img /etc/nixos/wallpaper/miku.jpg &"
         "waybar &"
-        # "hyprctl setcursor Bibata-Modern-Ice 24 &"
+        "hyprctl setcursor Bibata-Modern-Ice 24 &"
 
-        "[workspace 5 silent] yesplaymusic"
+        # "[workspace 5 silent] yesplaymusic"
         "[workspace 5 silent] nekoray"
-        "[workspace 2 silent] wechat-uos"
+        # "[workspace 2 silent] wechat-uos"
         # "[workspace 3 silent] floorp 'https://leetcode.cn/'"
         # "[workspace 3 silent] p3x-onenote"
         "[workspace 1 silent] kitty"
-        "[workspace 1 silent] floorp"
+        # "[workspace 1 silent] floorp"
         "sleep 5 && hyprctl dispatch workspace 1" # lastly focus workspace 1
       ];
 
@@ -39,7 +39,7 @@
       general = {
         layout = "dwindle";
         gaps_in = 2;
-        gaps_out = 0;
+        gaps_out = 2;
         border_size = 0;
 
         "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
@@ -58,7 +58,7 @@
       };
 
       dwindle = {
-        no_gaps_when_only = true;
+        # no_gaps_when_only = true;
         force_split = 0;
         special_scale_factor = 1.0;
         split_width_multiplier = 1.0;
@@ -70,14 +70,14 @@
       decoration = {
         rounding = 5;
 
-        active_opacity = 0.98;
-        inactive_opacity = 0.98;
+        active_opacity = 0.97;
+        inactive_opacity = 0.97;
 
         dim_inactive = true;
         dim_strength = 7.5e-2;
 
         blur.enabled = false;
-        drop_shadow = false;
+        # drop_shadow = false;
       };
 
       animations = {
@@ -125,7 +125,7 @@
         "$mainMod, B, exec, floorp"
 
         # browser
-        "$mainMod, E, exec, dolphin"
+        # "$mainMod, E, exec, dolphin"
 
         # fuzzel
         "$mainMod, Tab, exec, pkill fuzzel || fuzzel --show drun"
@@ -279,8 +279,8 @@
     };
 
     extraConfig = ''
-      monitor=eDP-1, disable
-      monitor=Unknown-1, disable # not for sure why this monistor exists
+      # monitor=eDP-1, disable
+      # monitor=Unknown-1, disable # not for sure why this monistor exists
       monitor=,preferred, auto, 1
       # monitor=,preferred, auto, 1 # don't scale
       xwayland {
@@ -313,7 +313,8 @@
     CLUTTER_BACKEND = "wayland";
 
     LIBVA_DRIVER_NAME = "nvidia";
-    GBM_BACKEND = "nvidia-drm";
+    # GBM_BACKEND = "nvidia-drm";
+    GBM_BACKEND = "nvidia";
     __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     XDG_CURRENT_DESKTOP = "Hyprland";
   };

@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let 
-    img = /etc/nixos/wallpaper/5.jpg;
+    img = "/etc/nixos/wallpaper/5.jpg";
 in {
   home.packages = [ pkgs.hyprlock ];
 

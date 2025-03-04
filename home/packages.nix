@@ -10,11 +10,11 @@
     rustup # rust toolchain install rust-src | rust-analyzer
     gcc
     gnumake
-    python312
-    python312Packages.python-lsp-server
+    # python312
+    # python312Packages.python-lsp-server
 
     # cmdline
-    zoxide # cd replace
+    # zoxide # cd replace
     yazi # teriminal file manager
     eza # ls replace
     gitui # git terminal gui
@@ -33,8 +33,8 @@
     yesplaymusic # music player
     floorp # browser
     nekoray # proxy
-    wechat-uos # wechat
-    p3x-onenote # onenote for linux
+    # wechat-uos # wechat
+    # p3x-onenote # onenote for linux
 
     unzip
     wget

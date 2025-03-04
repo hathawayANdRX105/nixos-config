@@ -2,27 +2,29 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, options, username, ... }:
+{ config, lib, pkgs, options, username, version ,... }:
 
 {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ./keymap.nix
   ];
 
+  # allow unfree software
+  nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
+
   # Use the systemd-boot EFI boot loader.
-  #boot.loader.systemd-boot.enable = true;
-  #boot.loader.efi.canTouchEfiVariables = true;
   boot.loader = {
     grub = {
       enable = true;
       device = "nodev";
       efiSupport = true;
       extraEntries = ''
-            menuentry "Windows" {
-        	search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
-        	chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
-            }
+          menuentry "Windows" {
+            	search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
+            	chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
+          }
       '';
     };
     efi = {
@@ -32,17 +34,17 @@
 
   };
 
-  networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
   # Easiest to use and most distros use this by default.
+  networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   networking.nameservers = [ "1.1.1.1" ];
 
   # hosts
-  networking.extraHosts = ''
-    185.199.111.133 raw.githubusercontent.com
-  '';
+  # networking.extraHosts = ''
+  #   185.199.111.133 raw.githubusercontent.com
+  # '';
 
   # Set your time zone.
   time.timeZone = "Asia/Shanghai";
@@ -57,18 +59,18 @@
   # i18n.defaultLocale = "en_US.UTF-8";
   i18n.defaultLocale = "zh_CN.UTF-8";
 
-  i18n.inputMethod = {
-    enabled = "fcitx5";
+  # i18n.inputMethod = {
+  #   enable = true;
 
-    fcitx5.waylandFrontend = true;
-    fcitx5.addons = let
-      config.packageOverrides = pkgs: {
-        fcitx5-rime =
-          pkgs.fcitx5-rime.override { rimeDataPkgs = [ ./rime-data-flypy ]; };
-      };
-    in with pkgs; [ fcitx5-rime rime-data fcitx5-chinese-addons ];
+    # fcitx5.waylandFrontend = true;
+    # fcitx5.addons = let
+    #   config.packageOverrides = pkgs: {
+    #     fcitx5-rime =
+    #       pkgs.fcitx5-rime.override { rimeDataPkgs = [ ./rime-data-flypy ]; };
+    #   };
+    # in with pkgs; [ fcitx5-rime rime-data fcitx5-chinese-addons ];
 
-  };
+  # };
 
   fonts = {
     enableDefaultPackages = true;
@@ -79,7 +81,7 @@
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       twemoji-color-font
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       wqy_zenhei
     ];
@@ -99,18 +101,19 @@
 
   # enable opengl
   # hardware.graphics.enable = true;
-  hardware.opengl.enable = true;
-  hardware.opengl.driSupport = true;
+  hardware.graphics.enable = true;
+  # hardware.opengl.driSupport = true; # TODO:not support
   # hardware.opengl.driSupport32Bit = true;
   hardware.enableRedistributableFirmware = true;
-  hardware.opengl.extraPackages = with pkgs; [
+  hardware.graphics.extraPackages = with pkgs; [
     intel-compute-runtime
     intel-media-driver
   ];
 
   # nvidia
   # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = [ "nvidia-dkms" ];
+  # services.xserver.videoDrivers = [ "nvidia-dkms" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
 
@@ -125,7 +128,6 @@
 
   # default session for autologin
   programs.hyprland.enable = true;
-
   services.displayManager.autoLogin = {
     enable = true;
     user = "${username}";
@@ -135,23 +137,19 @@
   # services.printing.enable = true;
 
   # Enable sound.
-  hardware.pulseaudio.enable = true;
+  # hardware.pulseaudio.enable = true;
   # OR
-  # services.pipewire = {
-  #   enable = true;
-  #   pulse.enable = true;
-  # };
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
   # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [ git helix ];
-
   environment.variables.EDITOR = "helix";
   environment.variables.SUDO_EDITOR = "helix";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-  # zsh
-  programs.zsh.enable = true;
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -176,26 +174,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
-  # key remap
-  services.keyd = {
-    enable = true;
-    keyboards = {
-      # The name is just the name of the configuration file, it does not really matter
-      default = {
-        ids = [
-          "*"
-        ]; # what goes into the [id] section, here we select all keyboards
-        # Everything but the ID section:
-        settings = {
-          # The main layer, if you choose to declare it in Nix
-          main = {
-            capslock = "layer(control)";
-            rightalt = "capslock";
-          };
-        };
-      };
-    };
-  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -207,25 +185,23 @@
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
-      substituters = [ "https://mirror.sjtu.edu.cn/nix-channels/store" ];
+      substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
     };
 
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 7d";
+      options = "--delete-older-than 15d";
     };
   };
 
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball
-      "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-        inherit pkgs;
-      };
-  };
+  # nixpkgs.config.packageOverrides = pkgs: {
+  #   nur = import (builtins.fetchTarball
+  #     "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+  #       inherit pkgs;
+  #     };
+  # };
 
-  # allow unfree software
-  nixpkgs.config.allowUnfree = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -249,7 +225,7 @@
   # and migrated your data accordingly.
   #
   # For more information, see `man configuration.nix` or https://nixos.org/manual/nixos/stable/options#opt-system.stateVersion .
-  system.autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.autoUpgrade.channel = "https://channels.nixos.org/nixos-${version}";
+  system.stateVersion = version; # Did you read the comment?
 }
 

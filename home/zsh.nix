@@ -39,7 +39,7 @@
       py = "python3";
 
       # Nixos
-      hxos = "hx /etc/nixos";
+      hxos = "sudo hx /etc/nixos -c ~/.config/helix/config.toml";
       nix-switch = "sudo nixos-rebuild switch";
       nix-flake-update = "sudo nix flake update ~/nixos-config#";
       nix-clean =

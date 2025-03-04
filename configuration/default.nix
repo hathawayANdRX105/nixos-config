@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, options, username, version ,... }:
+{ config, lib, pkgs, options, username, version, ... }:
 
 {
   imports = [ # Include the results of the hardware scan.
@@ -21,11 +21,13 @@
       device = "nodev";
       efiSupport = true;
       extraEntries = ''
-          menuentry "Windows" {
-            	search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
-            	chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
-          }
+        menuentry "Windows" {
+          	search --file --no-floppy --set=root /EFI/Microsoft/Boot/bootmgfw.efi
+          	chainloader (''${root})/EFI/Microsoft/Boot/bootmgfw.efi
+        }
       '';
+      # do not need to keep too much generations
+      configurationLimit = 10;
     };
     efi = {
       canTouchEfiVariables = true;
@@ -62,13 +64,13 @@
   # i18n.inputMethod = {
   #   enable = true;
 
-    # fcitx5.waylandFrontend = true;
-    # fcitx5.addons = let
-    #   config.packageOverrides = pkgs: {
-    #     fcitx5-rime =
-    #       pkgs.fcitx5-rime.override { rimeDataPkgs = [ ./rime-data-flypy ]; };
-    #   };
-    # in with pkgs; [ fcitx5-rime rime-data fcitx5-chinese-addons ];
+  # fcitx5.waylandFrontend = true;
+  # fcitx5.addons = let
+  #   config.packageOverrides = pkgs: {
+  #     fcitx5-rime =
+  #       pkgs.fcitx5-rime.override { rimeDataPkgs = [ ./rime-data-flypy ]; };
+  #   };
+  # in with pkgs; [ fcitx5-rime rime-data fcitx5-chinese-addons ];
 
   # };
 
@@ -150,7 +152,6 @@
   environment.variables.SUDO_EDITOR = "helix";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
@@ -174,7 +175,6 @@
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
 
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -188,20 +188,13 @@
       substituters = [ "https://mirrors.ustc.edu.cn/nix-channels/store" ];
     };
 
+    # do garbage collection weekly to keep disk usage low
     gc = {
       automatic = true;
       dates = "weekly";
       options = "--delete-older-than 15d";
     };
   };
-
-  # nixpkgs.config.packageOverrides = pkgs: {
-  #   nur = import (builtins.fetchTarball
-  #     "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-  #       inherit pkgs;
-  #     };
-  # };
-
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you

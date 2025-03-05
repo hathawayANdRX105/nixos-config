@@ -15,9 +15,9 @@
 
     # cmdline
     # zoxide # cd replace
-    yazi # teriminal file manager
+    # yazi # teriminal file manager
     eza # ls replace
-    gitui # git terminal gui
+    # gitui # git terminal gui
 
     # find 
     fzf

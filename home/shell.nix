@@ -47,8 +47,18 @@
     };
   };
 
+  # cd replacement
   programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
+  };
+
+  # cat replacement
+  programs.bat = {
+    enable = true;
+    config = {
+      pager = "less -FR";
+      theme = "Dracula";
+    };
   };
 }

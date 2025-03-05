@@ -10,10 +10,6 @@
     ./keymap.nix
   ];
 
-  # allow unfree software
-  nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
-
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     grub = {
@@ -89,12 +85,6 @@
     ];
   };
 
-  # console = {
-  #   font = "Lat2-Terminus16";
-  #   keyMap = "us";
-  #   useXkbConfig = true; # use xkb.options in tty.
-  # };
-
   # hyprlock unblock
   security.pam.services.hyprlock = { };
 
@@ -129,25 +119,23 @@
   };
 
   # default session for autologin
-  programs.hyprland.enable = true;
-  services.displayManager.autoLogin = {
-    enable = true;
-    user = "${username}";
-  };
+  # programs.hyprland.enable = true;
+  # services.displayManager.autoLogin = {
+  #   defaultSession = "Hyprland";
+  #   enable = true;
+  #   user = "${username}";
+  # };
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
   # Enable sound.
-  # hardware.pulseaudio.enable = true;
-  # OR
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
+  services.pipewire.enable = true;
+  services.pipewire.pulse.enable = true;
 
   # List packages installed in system profile. To search, run:
-  environment.systemPackages = with pkgs; [ git helix ];
+  environment.systemPackages = with pkgs; [ git unstable.helix ];
+  # TODO: move to shell env
   environment.variables.EDITOR = "helix";
   environment.variables.SUDO_EDITOR = "helix";
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
@@ -155,10 +143,8 @@
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   programs.mtr.enable = true;
-  programs.gnupg.agent = {
-    enable = true;
-    enableSSHSupport = true;
-  };
+  programs.gnupg.agent.enable = true;
+  programs.gnupg.agent.enableSSHSupport = true;
 
   # List services that you want to enable:
   # Enable the OpenSSH daemon.
@@ -174,12 +160,6 @@
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   nix = {
     settings = {

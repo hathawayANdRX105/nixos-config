@@ -1,11 +1,26 @@
 { config, pkgs, ... }: {
   home.packages = with pkgs; [ wayland ];
 
-  systemd.user.targets.hyprland-session.Unit.Wants = [ "xdg-desktop-autostart.target" ];
+  systemd.user.targets.hyprland-session.Unit.Wants =
+    [ "xdg-desktop-autostart.target" ];
+
+  home.pointerCursor = {
+    name = "Bibata-Modern-Ice";
+    package = pkgs.bibata-cursors;
+    size = 24;
+    # gtk.enable = true;
+    x11.enable = true;
+  };
+
+  home.sessionVariables = {
+    # GTK_THEME = config.gtk.theme.name;
+    XCURSOR_SIZE = config.home.pointerCursor.size;
+    XCURSOR_THEME = config.home.pointerCursor.name;
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = true;
+    package = pkgs.unstable.hyprland;
     systemd.enable = true;
 
     settings = {

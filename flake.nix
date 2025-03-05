@@ -17,23 +17,18 @@
     # };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
     let
       system = "x86_64-linux";
       username = "hathaway";
       version = "24.11";
     in {
 
-      nixpkgs.overlays = [
-        (final: _prev: {
-          unstable = import inputs.nixpkgs-unstable { inherit system; };
-        })
-      ];
-
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs nixpkgs username version; };
+        specialArgs = { inherit inputs nixpkgs username version system; };
         modules = [
+          ./overlays
           ./configuration
           ./home
           # inputs.nur-xddxdd.nixosModules.setupOverlay

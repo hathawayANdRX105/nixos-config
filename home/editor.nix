@@ -1,8 +1,7 @@
 { config, pkgs, lib, inputs, ... }: {
   programs.helix = {
     enable = true;
-    package = inputs.nixpkgs-unstable.legacyPackages.x86_64-linux.helix;
-    # package = pkgs.unstable.helix;
+    package = pkgs.unstable.helix;
     defaultEditor = true;
 
     languages = {

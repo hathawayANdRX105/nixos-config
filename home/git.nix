@@ -15,10 +15,10 @@
       (
         open_help: Some(( code: Char('?'), modifiers: "")),
 
-        move_left: Some(( code: Char('h'), modifiers: "")),
+        move_left:  Some(( code: Char('h'), modifiers: "")),
         move_right: Some(( code: Char('l'), modifiers: "")),
-        move_up: Some(( code: Char('k'), modifiers: "")),
-        move_down: Some(( code: Char('j'), modifiers: "")),
+        move_up:    Some(( code: Char('k'), modifiers: "")),
+        move_down:  Some(( code: Char('j'), modifiers: "")),
 
         push: Some(( code: Char('P'), modifiers: "")),
 
@@ -44,6 +44,9 @@
         stash_open: Some(( code: Char('l'), modifiers: "")),
 
         abort_merge: Some(( code: Char('M'), modifiers: "SHIFT")),
+
+        view_remotes: Some(( code: Char('r'), modifiers: "")),
+
       )
     '';
   };

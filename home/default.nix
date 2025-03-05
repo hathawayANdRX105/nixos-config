@@ -10,21 +10,21 @@
     users.${username} = {
       imports = [
         (import ./packages.nix)
-        (import ./zsh.nix)
+        (import ./shell.nix)
         (import ./starship.nix)
-        (import ./bat.nix)
+        # (import ./bat.nix)
         (import ./git.nix)
-        (import ./helix.nix)
-        # (import ./yazi.nix)
+        (import ./editor.nix)
+        (import ./file_manager.nix)
 
-        (import ./fuzzel.nix)
-        (import ./kitty.nix)
+        (import ./app_launcher.nix)
+        (import ./terminal.nix)
 
-        (import ./gtk.nix)
+        # (import ./gtk.nix)
         (import ./waybar)
-        (import ./hyprlock.nix)
-        (import ./hypridle.nix)
-        (import ./hyprland.nix)
+        (import ./lock_screen.nix)
+        (import ./system_idle.nix)
+        (import ./desktop_environment.nix)
       ];
 
       home.username = username;

@@ -1,14 +1,14 @@
-{config, ...}: {
+{ config, ... }: {
   home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
 
   programs.starship = {
     enable = true;
-    enableZshIntegration = true;
     settings = {
       scan_timeout = 10;
       add_newline = true;
       line_break.disabled = true;
-      format = "$directory$git_branch$git_metrics$git_commit$git_state$git_status$all";
+      format =
+        "$directory$git_branch$git_metrics$git_commit$git_state$git_status$all";
       character = {
         success_symbol = "[λ](green)";
         error_symbol = "[λ](red)";

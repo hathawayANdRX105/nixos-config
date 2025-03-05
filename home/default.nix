@@ -41,7 +41,7 @@
     home = "/home/${username}";
     group = "users";
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    shell = pkgs.zsh;
+    shell = pkgs.unstable.nushell;
     ignoreShellProgramCheck = true; # zsh need to be load by home manager.
   };
 

@@ -1,56 +1,32 @@
 { hostname, config, pkgs, ... }: {
-  programs.zsh = {
+  programs.nushell = {
     enable = true;
-    enableCompletion = true;
-    autosuggestion.enable = true;
-    syntaxHighlighting = {
-      enable = true;
-      highlighters =
-        [ "main" "brackets" "pattern" "cursor" "regexp" "root" "line" ];
-    };
+    package = pkgs.unstable.nushell;
+    configFile.text = "\n";
 
-    history = {
-      expireDuplicatesFirst = true;
-      ignoreDups = true;
-      ignoreSpace = true;
-      path = "${config.xdg.dataHome}/zsh/zsh_history";
-    };
-
-    oh-my-zsh = {
-      enable = true;
-      plugins = [ "git" "sudo" ];
-    };
-
-    initExtraFirst = ''
-      DISABLE_MAGIC_FUNCTIONS=true
-    '';
-
+    envFile.text = "";
     shellAliases = {
-      # Utils
-      c = "clear";
       cd = "z";
       cat = "bat";
 
-      l = "eza --icons  -a --group-directories-first -1"; # EZA_ICON_SPACING=2
+      l = "eza --icons  -a --group-directories-first -1";
       ll = "eza --icons  -a --group-directories-first -1 --no-user --long";
       tree = "eza --icons --tree --group-directories-first";
 
-      # Python3
-      py = "python3";
-
       # Nixos
-      hxos = "sudo hx /etc/nixos -c ~/.config/helix/config.toml";
+      hxos = "hx ~/.nixos-config";
       nix-switch = "sudo nixos-rebuild switch";
       nix-flake-update = "sudo nix flake update ~/nixos-config#";
       nix-clean =
-        "sudo nix-collect-garbage && sudo nix-collect-garbage -d && sudo rm /nix/var/nix/gcroots/auto/* && nix-collect-garbage && nix-collect-garbage -d";
+        "sudo nix-collect-garbage and sudo nix-collect-garbage -d and sudo rm /nix/var/nix/gcroots/auto/* and nix-collect-garbage and nix-collect-garbage -d";
     };
+
   };
 
   # cd replacement
   programs.zoxide = {
     enable = true;
-    enableZshIntegration = true;
+    enableNushellIntegration = true;
   };
 
   # cat replacement

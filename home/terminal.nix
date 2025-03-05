@@ -1,6 +1,4 @@
-
-{ config, pkgs, ...} :
-{
+{ config, pkgs, ... }: {
   programs.kitty = {
     enable = true;
     themeFile = "shadotheme";
@@ -9,7 +7,5 @@
       size = 14;
     };
 
-    shellIntegration.enableZshIntegration = true;
-    # shellIntegration.enableNushellIntegration = true;
   };
 }

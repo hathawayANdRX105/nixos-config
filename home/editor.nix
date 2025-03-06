@@ -18,7 +18,7 @@
     };
 
     settings = {
-      theme = "tokyonight_moon";
+      theme = "base16_transparent";
       editor = {
         cursorline = true;
         completion-timeout = 150;
@@ -32,9 +32,8 @@
         inline-diagnostics.cursor-line = "warning";
         inline-diagnostics.other-lines = "warning";
 
-        # completion-replace = true;
-        # true-color = true;
-        # color-modes = true;
+        completion-replace = true;
+        true-color = true;
 
         cursor-shape.insert = "bar";
         cursor-shape.normal = "block";

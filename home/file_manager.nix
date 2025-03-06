@@ -1,7 +1,10 @@
 { config, pkgs, ... }: {
   programs.yazi = {
     enable = true;
-    theme = { dark = "flexoki-dark"; };
+    theme = {
+      use = "tokyo-night";
+      dark = "tokyo-night";
+    };
     package = pkgs.unstable.yazi;
 
     settings = {
@@ -12,40 +15,92 @@
     };
 
     keymap = {
-      # manager.prepend_keymap = [
-      #   {
-      #     on = [ "u" "a" ];
-      #     exec = "plugin yamb save";
-      #   }
-      #   {
-      #     on = [ "u" "g" ];
-      #     exec = "plugin yamb jump_by_key";
-      #   }
-      #   {
-      #     on = [ "u" "G" ];
-      #     exec = "plugin yamb jump_by_fzf";
-      #   }
-      #   {
-      #     on = [ "u" "d" ];
-      #     exec = "plugin yamb delete_by_key";
-      #   }
-      #   {
-      #     on = [ "u" "D" ];
-      #     exec = "plugin yamb delete_by_fzf";
-      #   }
-      #   {
-      #     on = [ "u" "C" ];
-      #     exec = "plugin yamb delete_all";
-      #   }
-      #   {
-      #     on = [ "u" "r" ];
-      #     exec = "plugin yamb rename_by_key";
-      #   }
-      #   {
-      #     on = [ "u" "R" ];
-      #     exec = "plugin yamb rename_by_fzf";
-      #   }
-      # ];
+      manager.prepend_keymap = [
+        {
+          on = [ "u" "a" ];
+          run = "plugin yamb save";
+        }
+        {
+          on = [ "u" "g" ];
+          run = "plugin yamb jump_by_key";
+        }
+        {
+          on = [ "u" "G" ];
+          run = "plugin yamb jump_by_fzf";
+        }
+        {
+          on = [ "u" "d" ];
+          run = "plugin yamb delete_by_key";
+        }
+        {
+          on = [ "u" "D" ];
+          run = "plugin yamb delete_by_fzf";
+        }
+        {
+          on = [ "u" "C" ];
+          run = "plugin yamb delete_all";
+        }
+        {
+          on = [ "u" "r" ];
+          run = "plugin yamb rename_by_key";
+        }
+        {
+          on = [ "u" "R" ];
+          run = "plugin yamb rename_by_fzf";
+        }
+      ];
     };
+
+    initLua = ''
+      require("full-border"):setup {
+      	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
+      	type = ui.Border.ROUNDED,
+      }
+
+      -- hide preview when entrying yazi 
+      if os.getenv("NVIM") then
+      	require("hide-preview"):entry()
+      end
+
+      -- You can configure your bookmarks by lua language
+      local bookmarks = {}
+
+      local path_sep = package.config:sub(1, 1)
+      local home_path = ya.target_family() == "windows" and os.getenv("USERPROFILE") or os.getenv("HOME")
+      if ya.target_family() == "windows" then
+        table.insert(bookmarks, {
+          tag = "Scoop Local",
+          
+          path = (os.getenv("SCOOP") or home_path .. "\\scoop") .. "\\",
+          key = "p"
+        })
+        table.insert(bookmarks, {
+          tag = "Scoop Global",
+          path = (os.getenv("SCOOP_GLOBAL") or "C:\\ProgramData\\scoop") .. "\\",
+          key = "P"
+        })
+      end
+      table.insert(bookmarks, {
+        tag = "Desktop",
+        path = home_path .. path_sep .. "Desktop" .. path_sep,
+        key = "d"
+      })
+
+      require("yamb"):setup {
+        -- Optional, the path ending with path seperator represents folder.
+        bookmarks = bookmarks,
+        -- Optional, recieve notification everytime you jump.
+        jump_notify = true,
+        -- Optional, the cli of fzf.
+        cli = "fzf",
+        -- Optional, a string used for randomly generating keys, where the preceding characters have higher priority.
+        keys = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+        -- Optional, the path of bookmarks
+        path = (ya.target_family() == "windows" and os.getenv("APPDATA") .. "\\yazi\\config\\bookmark") or
+              (os.getenv("HOME") .. "/.config/yazi/bookmark"),
+      }
+
+      require("no-status"):setup()
+    '';
   };
 }

@@ -11,10 +11,6 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # nur-xddxdd = {
-    #   url = "github:xddxdd/nur-packages";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
@@ -27,12 +23,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs nixpkgs username version system; };
-        modules = [
-          ./overlays
-          ./configuration
-          ./home
-          # inputs.nur-xddxdd.nixosModules.setupOverlay
-        ];
+        modules = [ ./overlays ./configuration ./home ];
       };
     };
 }

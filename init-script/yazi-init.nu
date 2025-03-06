@@ -4,5 +4,5 @@ do -i {
   | ya pack -a h-hg/yamb
   | ya pack -a yazi-rs/plugins:full-border
   | ya pack -a yazi-rs/plugins:no-status
-  | ya pack -a yazi-rs/plugins:hide-preview;
+  | ya pack -a yazi-rs/plugins:toggle-pane;
 }

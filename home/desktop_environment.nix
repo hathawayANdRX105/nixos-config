@@ -1,9 +1,6 @@
 { config, pkgs, ... }: {
   home.packages = with pkgs; [ wayland ];
 
-  systemd.user.targets.hyprland-session.Unit.Wants =
-    [ "xdg-desktop-autostart.target" ];
-
   home.pointerCursor = {
     name = "Bibata-Modern-Ice";
     package = pkgs.bibata-cursors;
@@ -18,10 +15,12 @@
     XCURSOR_THEME = config.home.pointerCursor.name;
   };
 
+  systemd.user.targets.hyprland-session.Unit.Wants =
+    [ "xdg-desktop-autostart.target" ];
+
   wayland.windowManager.hyprland = {
     enable = true;
-    package = pkgs.unstable.hyprland;
-    systemd.enable = false;
+    systemd.enable = true;
 
     settings = {
       "$mainMod" = "SUPER";
@@ -134,7 +133,7 @@
 
       bind = [
         # terminal
-        "$mainMod, Return, exec, kitty"
+        "$mainMod, Return, exec, alacritty"
 
         # browser
         "$mainMod, B, exec, floorp"
@@ -302,36 +301,6 @@
         force_zero_scaling = true
       }
     '';
-  };
-
-  home.sessionVariables = {
-    NIXOS_OZONE_WL = "1";
-    __GL_GSYNC_ALLOWED = "0";
-    __GL_VRR_ALLOWED = "0";
-    SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh";
-    DISABLE_QT5_COMPAT = "0";
-    GDK_BACKEND = "wayland";
-    ANKI_WAYLAND = "1";
-    DIRENV_LOG_FORMAT = "";
-    WLR_DRM_NO_ATOMIC = "1";
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-    QT_QPA_PLATFORM = "xcb";
-    QT_QPA_PLATFORMTHEME = "qt5ct";
-    QT_STYLE_OVERRIDE = "kvantum";
-    MOZ_ENABLE_WAYLAND = "1";
-    WLR_BACKEND = "vulkan";
-    WLR_RENDERER = "vulkan";
-    WLR_NO_HARDWARE_CURSORS = "1";
-    XDG_SESSION_TYPE = "wayland";
-    SDL_VIDEODRIVER = "wayland";
-    CLUTTER_BACKEND = "wayland";
-
-    LIBVA_DRIVER_NAME = "nvidia";
-    # GBM_BACKEND = "nvidia-drm";
-    GBM_BACKEND = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    XDG_CURRENT_DESKTOP = "Hyprland";
   };
 
 }

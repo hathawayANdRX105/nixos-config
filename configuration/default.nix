@@ -119,9 +119,16 @@
   };
 
   # default session for autologin
-  # programs.hyprland.enable = true;
+  programs.hyprland.enable = true;
+  programs.hyprland.withUWSM = true;
+
+  # services.displayManager.ly.enable = true;
+  # services.displayManager.ly.settings = {
+  #   num_lock = true;
+  #   login_cmd = ''`exec "$@"`'';
+  # };
   # services.displayManager.autoLogin = {
-  #   defaultSession = "Hyprland";
+  #   # defaultSession = "Hyprland";
   #   enable = true;
   #   user = "${username}";
   # };
@@ -174,6 +181,11 @@
       dates = "weekly";
       options = "--delete-older-than 15d";
     };
+
+    # ignore git dirty warn
+    extraOptions = ''
+      warn-dirty = false
+    '';
   };
 
   # Copy the NixOS configuration file and link it from the resulting system

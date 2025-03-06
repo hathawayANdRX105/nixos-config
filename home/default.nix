@@ -10,12 +10,12 @@
     users.${username} = {
       imports = [
         (import ./packages.nix)
-        (import ./shell.nix)
-        (import ./starship.nix)
-        # (import ./bat.nix)
+
+        # (import ./starship.nix)
         (import ./git.nix)
         (import ./editor.nix)
         (import ./file_manager.nix)
+        (import ./shell)
 
         (import ./app_launcher.nix)
         (import ./terminal.nix)
@@ -25,6 +25,7 @@
         (import ./lock_screen.nix)
         (import ./system_idle.nix)
         (import ./desktop_environment.nix)
+
       ];
 
       home.username = username;

@@ -15,6 +15,7 @@
     eza # ls replace
     gnuplot
     wl-clipboard # fix the copy&paste disfunction in helix
+    brightnessctl # adjust the brightness of screen
 
     # find 
     fzf

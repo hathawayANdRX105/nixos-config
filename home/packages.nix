@@ -8,18 +8,13 @@
 
     # language
     unstable.rustup # rust toolchain install rust-src | rust-analyzer
-    # unstable.cargo
     gcc
     gnumake
-    # python312
-    # python312Packages.python-lsp-server
 
     # cmdline
-    # zoxide # cd replace
-    # yazi # teriminal file manager
     eza # ls replace
-    # gitui # git terminal gui
     gnuplot
+    wl-clipboard # fix the copy&paste disfunction in helix
 
     # find 
     fzf

@@ -16,6 +16,7 @@ $env.XDG_PICTURES_DIR    = "$HOME/Pictures"
 $env.XDG_PUBLICSHARE_DIR = "$HOME/Public"
 $env.XDG_TEMPLATES_DIR   = "$HOME/Templates"
 $env.XDG_VIDEOS_DIR      = "$HOME/Videos"
+$env.XDG_CACHE_HOME      = "$HOME/.cache"
 $env.XDG_SESSION_TYPE    = "wayland"
 $env.XDG_CURRENT_DESKTOP = "Hyprland"
 
@@ -45,4 +46,8 @@ $env.GBM_BACKEND = "nvidia"
 $env.__GLX_VENDOR_LIBRARY_NAME = "nvidia"
 
 # starship prompt
-$env.STARSHIP_CACHE = "$XDG_CACHE_HOME/starship"
+# $env.STARSHIP_CACHE = $"($env.XDG_CACHE_HOME)/starship"
+
+
+# zoxide 
+zoxide init nushell | save -f ~/.zoxide.nu

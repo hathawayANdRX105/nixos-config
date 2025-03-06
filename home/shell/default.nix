@@ -33,8 +33,10 @@
   programs.nushell = {
     enable = true;
     package = pkgs.unstable.nushell;
-    configFile.source = ./config.nu;
+
     envFile.source = ./env.nu;
+    loginFile.source = ./login.nu;
+    configFile.source = ./config.nu;
 
     shellAliases = {
       cd = "z";
@@ -57,8 +59,8 @@
   # cd replacement
   programs.zoxide = {
     enable = true;
+    package = pkgs.unstable.zoxide;
     enableNushellIntegration = true;
-    enableZshIntegration = true;
   };
 
   # cat replacement

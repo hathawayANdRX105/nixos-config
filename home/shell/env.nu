@@ -16,7 +16,6 @@ $env.XDG_PICTURES_DIR    = "$HOME/Pictures"
 $env.XDG_PUBLICSHARE_DIR = "$HOME/Public"
 $env.XDG_TEMPLATES_DIR   = "$HOME/Templates"
 $env.XDG_VIDEOS_DIR      = "$HOME/Videos"
-$env.XDG_CACHE_HOME      = "$HOME/.cache"
 $env.XDG_SESSION_TYPE    = "wayland"
 $env.XDG_CURRENT_DESKTOP = "Hyprland"
 
@@ -24,7 +23,6 @@ $env.XDG_CURRENT_DESKTOP = "Hyprland"
 $env.NIXOS_OZONE_WL = "1"
 $env.__GL_GSYNC_ALLOWED = "0"
 $env.__GL_VRR_ALLOWED = "0"
-# $env.SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh"
 $env.DISABLE_QT5_COMPAT = "0"
 $env.GDK_BACKEND = "wayland"
 $env.ANKI_WAYLAND = "1"
@@ -46,8 +44,12 @@ $env.GBM_BACKEND = "nvidia"
 $env.__GLX_VENDOR_LIBRARY_NAME = "nvidia"
 
 # starship prompt
-# $env.STARSHIP_CACHE = $"($env.XDG_CACHE_HOME)/starship"
+$env.STARSHIP_CACHE = $"($env.HOME)/.cache/starship"
 
 
 # zoxide 
 zoxide init nushell | save -f ~/.zoxide.nu
+
+# gitui push & ssh
+# $env.SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/ssh-agent.socket"
+# $env.SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh"

@@ -84,7 +84,7 @@
       decoration = {
         rounding = 5;
 
-        active_opacity = 0.97;
+        active_opacity = 0.96;
         inactive_opacity = 0.96;
 
         dim_inactive = true;

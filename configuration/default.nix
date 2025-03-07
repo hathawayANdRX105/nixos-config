@@ -23,7 +23,7 @@
         }
       '';
       # do not need to keep too much generations
-      configurationLimit = 10;
+      configurationLimit = 20;
     };
     efi = {
       canTouchEfiVariables = true;
@@ -104,37 +104,32 @@
 
   # nvidia
   # Load nvidia driver for Xorg and Wayland
-  # services.xserver.videoDrivers = [ "nvidia-dkms" ];
   services.xserver.videoDrivers = [ "nvidia" ];
   hardware.nvidia = {
     modesetting.enable = true;
 
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
+    # prime.offload.enable = true;
+    # powerManagement.finegrained = true;
+    powerManagement.enable = true;
 
     nvidiaSettings = false;
 
     package = config.boot.kernelPackages.nvidiaPackages.stable;
     open = false;
+
+    # if there're occur screen tearing issues then uncomment it.
+    # forceFullCompositionPipeline = true;
   };
 
   # default session for autologin
   programs.hyprland.enable = true;
   programs.hyprland.withUWSM = true;
 
-  # services.displayManager.ly.enable = true;
-  # services.displayManager.ly.settings = {
-  #   num_lock = true;
-  #   login_cmd = ''`exec "$@"`'';
-  # };
   # services.displayManager.autoLogin = {
   #   # defaultSession = "Hyprland";
   #   enable = true;
   #   user = "${username}";
   # };
-
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
 
   # Enable sound.
   services.pipewire.enable = true;
@@ -142,28 +137,25 @@
 
   # List packages installed in system profile. To search, run:
   environment.systemPackages = with pkgs; [ git unstable.helix ];
-  # TODO: move to shell env
-  environment.variables.EDITOR = "helix";
-  environment.variables.SUDO_EDITOR = "helix";
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
-  programs.mtr.enable = true;
-  programs.gnupg.agent.enable = true;
-  programs.gnupg.agent.enableSSHSupport = true;
+  # programs.mtr.enable = true;
+  # programs.gnupg.agent.enable = true;
+  # programs.gnupg.agent.enableSSHSupport = true;
 
   # List services that you want to enable:
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
+  # programs.ssh.startAgent = true;
 
   # Enable notify
   services.dbus.enable = true;
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-  services.xserver.desktopManager.runXdgAutostartIfNone = true;
-  services.xserver.xkb.layout = "us";
+  # services.xserver.enable = true;
+  # services.xserver.desktopManager.runXdgAutostartIfNone = true;
+  # services.xserver.xkb.layout = "us";
 
   # Enable touchpad support (enabled default in most desktopManager).
   services.libinput.enable = true;

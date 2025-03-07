@@ -22,8 +22,7 @@
 
         # (import ./gtk.nix)
         (import ./waybar)
-        (import ./lock_screen.nix)
-        (import ./system_idle.nix)
+        (import ./system_standby.nix)
         (import ./desktop_environment.nix)
 
       ];
@@ -62,4 +61,6 @@
 
   nix.settings.allowed-users = [ "${username}" ];
   nix.settings.trusted-users = [ "${username}" ];
+
+  security.pam.services.${username}.sshAgentAuth = true;
 }

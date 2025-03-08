@@ -165,6 +165,8 @@
 
         "$mainMod, F11, fullscreen, 0"
         "$mainMod, F12, fullscreen, 1"
+        ", F11, fullscreen, 0"
+        # ", F12, fullscreen, 1"
 
         # switch focus
         "$mainMod, left, movefocus, l"

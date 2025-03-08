@@ -76,21 +76,25 @@
     enable = true;
     settings = {
       scan_timeout = 10;
-      add_newline = true;
+      add_newline = false;
       line_break.disabled = true;
-      format =
-        "$directory$git_branch$git_metrics$git_commit$git_state$git_status$all";
+      format = " $directory$username$character";
+      right_format =
+        "$cmd_duration$git_branch$git_metrics$git_commit$git_state$all";
+
+      cmd_duration.format = "[$duration](italic dimmed blue) ";
       character = {
         success_symbol = "[λ](green)";
         error_symbol = "[λ](red)";
         vimcmd_symbol = "[λ](green)";
       };
       directory = {
-        home_symbol = "home";
+        home_symbol = "~";
         style = "cyan";
       };
       git_commit.tag_symbol = " tag ";
       git_branch = {
+        format = "[$symbol$branch(:$remote_branch)]($style) ";
         style = "purple";
         symbol = "";
       };
@@ -98,6 +102,13 @@
         added_style = "bold yellow";
         deleted_style = "bold red";
         disabled = false;
+      };
+      git_status.disabled = true;
+      time = {
+        disabled = false;
+        format = "[$time]($style)";
+        time_format = "%R";
+        style = "italic dimmed white";
       };
       aws.symbol = "aws ";
       bun.symbol = "bun ";
@@ -139,7 +150,6 @@
       rust.symbol = "rs ";
       scala.symbol = "scala ";
       spack.symbol = "spack ";
-      sudo.symbol = "sudo ";
       swift.symbol = "swift ";
       terraform.symbol = "terraform ";
       zig.symbol = "zig ";

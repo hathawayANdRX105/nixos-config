@@ -45,7 +45,7 @@ $env.__GLX_VENDOR_LIBRARY_NAME = "nvidia"
 
 # starship prompt
 $env.STARSHIP_CACHE = $"($env.HOME)/.cache/starship"
-
+$env.config.render_right_prompt_on_last_line = true
 
 # zoxide 
 zoxide init nushell | save -f ~/.zoxide.nu

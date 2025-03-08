@@ -83,8 +83,8 @@
         "C-\\" = ":config-reload";
         "A-\\" = ":config-open";
 
-        "A-h" = ":buffer-previous";
-        "A-l" = ":buffer-next";
+        "A-<" = ":buffer-previous";
+        "A->" = ":buffer-next";
 
         "C-c" = "yank_to_clipboard";
         "C-v" = "paste_clipboard_after";

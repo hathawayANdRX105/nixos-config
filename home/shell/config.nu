@@ -12,3 +12,7 @@ let may_start = uwsm check may-start | complete | $in.exit_code == 0
 if $may_start {
   ^uwsm start default
 }
+
+# Initialize starship
+mkdir ($nu.data-dir | path join "vendor/autoload")
+starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")

@@ -3,25 +3,32 @@
     position = "top";
     layer = "top";
     height = 6;
-    margin-top = 2;
+    margin-top = 0;
     margin-bottom = 2;
-    margin-left = 2;
-    margin-right = 2;
-    round = 10;
-    modules-left = [ "custom/launcher" "tray" ];
-    modules-center = [ "clock" "hyprland/workspaces" ];
-    modules-right = [ "pulseaudio" "cpu" "memory" "disk" "battery" "network" ];
+    margin-left = 0;
+    margin-right = 0;
+    round = 0;
+    modules-left = [ "custom/launcher" "clock" "tray" ];
+    modules-center = [ "hyprland/workspaces" ];
+    modules-right = [
+      "pulseaudio"
+      "cpu"
+      "memory"
+      "disk"
+      # "battery"
+      "network"
+    ];
     clock = {
-      calendar = {
-        format = { today = "<span color='#b4befe'><b><u>{}</u></b></span>"; };
-      };
+      # calendar = {
+      #   format = { today = "<span color='#b4befe'><b><u>{}</u></b></span>"; };
+      # };
       #    
       format = "{:%H:%M}";
-      tooltip = "true";
-      tooltip-format = ''
-        <big>{:%Y %B}</big>
-        <tt><small>{calendar}</small></tt>'';
-      format-alt = "{:%d/%m}";
+      # tooltip = "true";
+      # tooltip-format = ''
+      #   <big>{:%Y %B}</big>
+      #   <tt><small>{calendar}</small></tt>'';
+      # format-alt = "{:%d/%m}";
     };
     "hyprland/workspaces" = {
       active-only = false;
@@ -49,12 +56,12 @@
     };
     memory = {
       format = "󰟜 {}%";
-      format-alt = "󰟜 {used} GiB"; # 
+      format-alt = "󰟜{used} GiB"; # 
       interval = 2;
     };
     cpu = {
-      format = "  {usage}%";
-      format-alt = "  {avg_frequency} GHz";
+      format = " {usage}%";
+      format-alt = " {avg_frequency} GHz";
       interval = 2;
     };
     disk = {
@@ -75,25 +82,25 @@
     };
     pulseaudio = {
       format = "{icon} {volume}%";
-      format-muted = "󰖁  {volume}%";
+      format-muted = "󰖁 {volume}%";
       format-icons = { default = [ " " ]; };
-      scroll-step = 5;
+      scroll-step = 3;
       on-click = "pamixer -t";
     };
-    battery = {
-      format = "{icon} {capacity}%";
-      format-icons = [ " " " " " " " " " " ];
-      format-charging = " {capacity}%";
-      format-full = " {capacity}%";
-      format-warning = " {capacity}%";
-      interval = 5;
-      states = { warning = 20; };
-      format-time = "{H}h{M}m";
-      tooltip = true;
-      tooltip-format = "{time}";
-    };
+    # battery = {
+    #   format = "{icon} {capacity}%";
+    #   format-icons = [ " " " " " " " " " " ];
+    #   format-charging = " {capacity}%";
+    #   format-full = " {capacity}%";
+    #   format-warning = " {capacity}%";
+    #   interval = 5;
+    #   states = { warning = 20; };
+    #   format-time = "{H}h{M}m";
+    #   tooltip = true;
+    #   tooltip-format = "{time}";
+    # };
     "custom/launcher" = {
-      format = "";
+      format = " ";
       on-click = "pkill fuzzel || fuzzel --show drun";
       on-click-right = "pkill wofi || wallpaper-picker";
       tooltip = "false";

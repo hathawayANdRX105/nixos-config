@@ -1,16 +1,16 @@
 { ... }:
-let custom = {
+let
+  custom = {
     font = "JetBrainsMono Nerd Font";
-    font_size = "16px";
+    font_size = "14px";
     font_weight = "bold";
     text_color = "#cdd6f4";
-    secondary_accent= "89b4fa";
+    secondary_accent = "89b4fa";
     tertiary_accent = "f5f5f5";
     background = "#0B0B12";
     opacity = "0.9";
-};
-in 
-{
+  };
+in {
   programs.waybar.style = ''
 
     * {
@@ -48,6 +48,8 @@ in
     #tray, #pulseaudio, #network, #cpu, #memory, #disk, #clock, #battery {
         font-size: ${custom.font_size};
         color: ${custom.text_color};
+        padding-left: 9px;
+        padding-right: 9px;
     }
     #tray {
         padding: 0 20px;
@@ -59,34 +61,8 @@ in
         padding-right: 15px;
     }
 
-    #pulseaudio {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
-    #cpu {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
-    #memory {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
-    #disk {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
-    #battery {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
-    #network {
-        padding-left: 9px;
-        padding-right: 9px;
-    }
-    
-
     #custom-launcher {
-        font-size: 20px;
+        font-size: 16px;
         color: #b4befe;
         font-weight: ${custom.font_weight};
         padding-left: 10px;

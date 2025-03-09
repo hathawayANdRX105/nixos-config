@@ -16,3 +16,9 @@ if $may_start {
 # Initialize starship
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+# auto start zellij
+let zellij_is_active = pidof zellij | complete | $in.exit_code == 0 
+if not $zellij_is_active  {
+  zellij
+}

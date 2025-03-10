@@ -8,14 +8,14 @@ $env.SUDO_EDITOR = "hx"
 $env.config.buffer_editor = "hx"
 
 # xdg
-$env.XDG_DESKTOP_DIR     = "$HOME/Desktop"
-$env.XDG_DOCUMENTS_DIR   = "$HOME/Documents"
-$env.XDG_DOWNLOAD_DIR    = "$HOME/Downloads"
-$env.XDG_MUSIC_DIR       = "$HOME/Music"
-$env.XDG_PICTURES_DIR    = "$HOME/Pictures"
-$env.XDG_PUBLICSHARE_DIR = "$HOME/Public"
-$env.XDG_TEMPLATES_DIR   = "$HOME/Templates"
-$env.XDG_VIDEOS_DIR      = "$HOME/Videos"
+$env.XDG_DESKTOP_DIR     = $"($env.HOME)/Desktop"
+$env.XDG_DOCUMENTS_DIR   = $"($env.HOME)/Documents"
+$env.XDG_DOWNLOAD_DIR    = $"($env.HOME)/Downloads"
+$env.XDG_MUSIC_DIR       = $"($env.HOME)/Music"
+$env.XDG_PICTURES_DIR    = $"($env.HOME)/Pictures"
+$env.XDG_PUBLICSHARE_DIR = $"($env.HOME)/Public"
+$env.XDG_TEMPLATES_DIR   = $"($env.HOME)/Templates"
+$env.XDG_VIDEOS_DIR      = $"($env.HOME)/Videos"
 $env.XDG_SESSION_TYPE    = "wayland"
 $env.XDG_CURRENT_DESKTOP = "Hyprland"
 
@@ -50,6 +50,5 @@ $env.config.render_right_prompt_on_last_line = true
 # zoxide 
 zoxide init nushell | save -f ~/.zoxide.nu
 
-# gitui push & ssh
-# $env.SSH_AUTH_SOCK = $"($env.XDG_RUNTIME_DIR)/ssh-agent.socket"
-# $env.SSH_AUTH_SOCK = "/run/user/1000/keyring/ssh"
+# this path contain all the configuration file setup by home-manager
+$env.HOME_CONFIG_DIR = $"($env.HOME)/.nixos-config/home/config"

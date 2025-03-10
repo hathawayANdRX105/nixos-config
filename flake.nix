@@ -11,6 +11,7 @@
     home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
@@ -23,7 +24,7 @@
       nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
         inherit system;
         specialArgs = { inherit inputs nixpkgs username version system; };
-        modules = [ ./overlays ./configuration ./home ];
+        modules = [ ./overlays ./nixos ./home ];
       };
     };
 }

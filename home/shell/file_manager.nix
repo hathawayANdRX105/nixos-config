@@ -12,6 +12,13 @@
       input.cursor_blink = true;
       plugin.previewrs = [ ];
       plugin.preloaders = [ ];
+      opener = {
+        edit = [{
+          run = ''nu -e "code $@; exit;"'';
+          block = true;
+          for = "unix";
+        }];
+      };
     };
 
     keymap = {

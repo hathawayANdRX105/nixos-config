@@ -5,7 +5,6 @@
     userEmail = "2635254302@qq.com";
     extraConfig = {
       url = { "https://gitclone.com/".insteadOf = "https://"; };
-      safe.directory = "/etc/nixos";
     };
   };
 
@@ -46,7 +45,6 @@
         abort_merge: Some(( code: Char('M'), modifiers: "SHIFT")),
 
         view_remotes: Some(( code: Char('r'), modifiers: "")),
-
       )
     '';
   };

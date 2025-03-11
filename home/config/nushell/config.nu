@@ -36,7 +36,8 @@ if 'ZELLIJ' not-in ($env | columns) {
 
 alias cat = bat
 alias cd = z
-alias hxos = hx ~/.nixos-config
+alias code = hx --config $"($env.HOME_CONFIG_DIR)/helix/config.toml"
+alias hxos = code ~/.nixos-config
 alias l = eza --icons  -a --group-directories-first -1
 alias ll = eza --icons  -a --group-directories-first -1 --no-user --long
 alias nix-clean = sudo nix-collect-garbage | sudo nix-collect-garbage -d | sudo rm /nix/var/nix/gcroots/auto/* | nix-collect-garbage | nix-collect-garbage -d

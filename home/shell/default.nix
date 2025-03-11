@@ -1,7 +1,7 @@
 { hostname, config, pkgs, ... }:
 let config_path = ../config;
 in {
-  imports = [ ./workspace.nix ./prompt.nix ];
+  imports = [ ./prompt.nix ./editor.nix ./git.nix ./file_manager.nix ];
   programs.nushell = {
     enable = true;
     package = pkgs.unstable.nushell;

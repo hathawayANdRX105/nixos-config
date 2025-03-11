@@ -11,17 +11,12 @@
       imports = [
         (import ./packages.nix)
 
-        # (import ./starship.nix)
-        (import ./git.nix)
-        (import ./editor.nix)
-        (import ./file_manager.nix)
-        (import ./shell)
-
         (import ./app_launcher.nix)
         (import ./terminal.nix)
 
         # (import ./gtk.nix)
-        (import ./waybar)
+        (import ./shell)
+        (import ./status_bar)
         (import ./system_standby.nix)
         (import ./desktop_environment.nix)
 

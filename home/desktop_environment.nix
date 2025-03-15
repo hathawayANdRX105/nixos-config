@@ -29,16 +29,15 @@
         # "fcitx5 &"
         "hypridle &"
         "swww-daemon && swww img /etc/nixos/wallpaper/miku.jpg &"
-        "waybar &"
+        "hyprpanel &"
+        # "waybar &"
         "hyprctl setcursor Bibata-Modern-Ice 24 &"
 
         # "[workspace 5 silent] yesplaymusic"
         "[workspace 5 silent] nekoray"
         # "[workspace 2 silent] wechat-uos"
-        # "[workspace 3 silent] floorp 'https://leetcode.cn/'"
-        # "[workspace 3 silent] p3x-onenote"
-        "[workspace 1 silent] kitty"
-        # "[workspace 1 silent] floorp"
+        "[workspace 1 silent] alacritty"
+        "[workspace 1 silent] floorp"
         "sleep 5 && hyprctl dispatch workspace 1" # lastly focus workspace 1
       ];
 
@@ -88,7 +87,8 @@
         inactive_opacity = 0.96;
 
         dim_inactive = true;
-        dim_strength = 7.5e-2;
+        dim_strength = 0;
+        # dim_strength = 7.5e-2;
 
         blur.enabled = false;
       };
@@ -200,15 +200,6 @@
         "$mainMod CTRL, K, resizeactive, 0 -40"
         "$mainMod CTRL, J, resizeactive, 0 40"
 
-        "$mainMod ALT, left, moveactive,  -80 0"
-        "$mainMod ALT, right, moveactive, 80 0"
-        "$mainMod ALT, up, moveactive, 0 -80"
-        "$mainMod ALT, down, moveactive, 0 80"
-        "$mainMod ALT, H, moveactive,  -80 0"
-        "$mainMod ALT, L, moveactive, 80 0"
-        "$mainMod ALT, K, moveactive, 0 -80"
-        "$mainMod ALT, J, moveactive, 0 80"
-
         # Switch workspaces with mainMod + [0-9]
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
@@ -232,11 +223,6 @@
         "float,mpv"
         "center,mpv"
         "size 1200 725,mpv"
-        "float,title:^(float_kitty)$"
-        "center,title:^(float_kitty)$"
-        "size 950 600,title:^(float_kitty)$"
-        "float,audacious"
-        "workspace 8 silent, audacious"
         "pin,fuzzel"
         "float,fuzzel"
         "noborder,fuzzel"
@@ -259,18 +245,11 @@
         "pin, title:^(Picture-in-Picture)$"
         "opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
         "opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
-        "opacity 1.0 override 1.0 override, class:(Aseprite)"
-        "opacity 1.0 override 1.0 override, class:(Unity)"
-        "opacity 0.9 0.9,title:^(kitty)$"
-        "opacity 0.9 0.9,class:^(kitty)$"
         "opacity 0.9 0.9,title:^(.*YesPlayMusic.*)$"
         "opacity 0.98 override 0.98 override, title:^(floorp)$"
         "opacity 0.98 override 0.98 override, class:^(floorp)$"
         "idleinhibit focus, class:^(mpv)$"
         "idleinhibit fullscreen, class:^(floorp)$"
-        "float,class:^(pavucontrol)$"
-        "float,class:^(SoundWireServer)$"
-        "float,class:^(.sameboy-wrapped)$"
         "float,class:^(file_progress)$"
         "float,class:^(confirm)$"
         "float,class:^(dialog)$"

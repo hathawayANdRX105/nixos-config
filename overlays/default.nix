@@ -9,5 +9,7 @@
         localSystem = { inherit system; };
       };
     })
+
+    inputs.hyprpanel.overlay
   ];
 }

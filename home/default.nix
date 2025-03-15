@@ -5,6 +5,9 @@
     useGlobalPkgs = true;
     useUserPackages = true;
     extraSpecialArgs = { inherit inputs; };
+
+    # backup bug fix: use the below cmd to delete the backup file
+    # journalctl -xe --unit home-manager-{username}
     backupFileExtension = "backup";
 
     users.${username} = {
@@ -16,7 +19,7 @@
 
         # (import ./gtk.nix)
         (import ./shell)
-        (import ./status_bar)
+        (import ./status_bar.nix)
         (import ./system_standby.nix)
         (import ./desktop_environment.nix)
 

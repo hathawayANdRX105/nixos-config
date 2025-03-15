@@ -12,6 +12,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprpanel.url = "github:Jas-SinghFSU/HyprPanel";
+    hyprpanel.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:

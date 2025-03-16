@@ -18,7 +18,7 @@ keybinds {
 		// create or close
 		bind "Alt m" { ToggleFloatingPanes; }
 	    bind "Alt n" { NewPane; }
-        bind "Alt x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "Alt x" { CloseFocus; }
 
 		// movement
         bind "Alt h" "Alt Left"  { MoveFocusOrTab "Left"; }
@@ -29,14 +29,14 @@ keybinds {
 	    bind "Alt [" { GoToPreviousTab; }
         bind "Alt ]" { GoToNextTab; }
 
-        bind "Alt 1" { GoToTab 1; SwitchToMode "Normal"; }
-        bind "Alt 2" { GoToTab 2; SwitchToMode "Normal"; }
-        bind "Alt 3" { GoToTab 3; SwitchToMode "Normal"; }
-        bind "Alt 4" { GoToTab 4; SwitchToMode "Normal"; }
-        bind "Alt 5" { GoToTab 5; SwitchToMode "Normal"; }
-        bind "Alt 6" { GoToTab 6; SwitchToMode "Normal"; }
-        bind "Alt 7" { GoToTab 7; SwitchToMode "Normal"; }
-        bind "Alt 8" { GoToTab 8; SwitchToMode "Normal"; }
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
         bind "Ctrl Tab" { ToggleTab; }
         
 
@@ -49,7 +49,7 @@ keybinds {
         bind "Alt Ctrl j" "Alt Ctrl Down"  { Resize "Increase Down"; }
         bind "Alt Ctrl k" "Alt Ctrl Up"    { Resize "Increase Up"; }
         bind "Alt Ctrl l" "Alt Ctrl Right" { Resize "Increase Right"; }
-        bind "Alt F11" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+        bind "Alt F11" { ToggleFocusFullscreen;  }
 
         // adjust position
 		bind "Alt Shift h" "Alt Shift Left"  { MovePane "Left"; }
@@ -69,7 +69,7 @@ keybinds {
 		// create or close
 		bind "Alt m" { ToggleFloatingPanes; }
 	    bind "Alt n" { NewPane; }
-        bind "Alt x" { CloseFocus; SwitchToMode "Normal"; }
+        bind "Alt x" { CloseFocus; }
 
 		// movement
         bind "Alt h" "Alt Left"  { MoveFocusOrTab "Left"; }
@@ -80,14 +80,14 @@ keybinds {
 	    bind "Alt [" { GoToPreviousTab; }
         bind "Alt ]" { GoToNextTab; }
 
-        bind "Alt 1" { GoToTab 1; SwitchToMode "Normal"; }
-        bind "Alt 2" { GoToTab 2; SwitchToMode "Normal"; }
-        bind "Alt 3" { GoToTab 3; SwitchToMode "Normal"; }
-        bind "Alt 4" { GoToTab 4; SwitchToMode "Normal"; }
-        bind "Alt 5" { GoToTab 5; SwitchToMode "Normal"; }
-        bind "Alt 6" { GoToTab 6; SwitchToMode "Normal"; }
-        bind "Alt 7" { GoToTab 7; SwitchToMode "Normal"; }
-        bind "Alt 8" { GoToTab 8; SwitchToMode "Normal"; }
+        bind "Alt 1" { GoToTab 1; }
+        bind "Alt 2" { GoToTab 2; }
+        bind "Alt 3" { GoToTab 3; }
+        bind "Alt 4" { GoToTab 4; }
+        bind "Alt 5" { GoToTab 5; }
+        bind "Alt 6" { GoToTab 6; }
+        bind "Alt 7" { GoToTab 7; }
+        bind "Alt 8" { GoToTab 8; }
         bind "Ctrl Tab" { ToggleTab; }
         
 
@@ -100,7 +100,7 @@ keybinds {
         bind "Alt Ctrl j" "Alt Ctrl Down"  { Resize "Increase Down"; }
         bind "Alt Ctrl k" "Alt Ctrl Up"    { Resize "Increase Up"; }
         bind "Alt Ctrl l" "Alt Ctrl Right" { Resize "Increase Right"; }
-        bind "Alt F11" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+        bind "Alt F11" { ToggleFocusFullscreen; }
 
         // adjust position
 		bind "Alt Shift h" "Alt Shift Left"  { MovePane "Left"; }

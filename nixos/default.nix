@@ -125,12 +125,6 @@
   programs.hyprland.enable = true;
   programs.hyprland.withUWSM = true;
 
-  # services.displayManager.autoLogin = {
-  #   # defaultSession = "Hyprland";
-  #   enable = true;
-  #   user = "${username}";
-  # };
-
   # Enable sound.
   services.pipewire.enable = true;
   services.pipewire.pulse.enable = true;
@@ -151,6 +145,10 @@
 
   # Enable notify
   services.dbus.enable = true;
+
+  # Enable support for Bluetooth
+  # cmd -> bluetoothctl
+  hardware.bluetooth.enable = true;
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;

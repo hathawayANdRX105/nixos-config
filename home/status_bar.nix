@@ -5,6 +5,7 @@
   programs.hyprpanel = {
     enable = true;
     hyprland.enable = true;
+    overwrite.enable = true;
     theme = "catppuccin_mocha";
 
     # Configure bar layouts for monitors.
@@ -13,7 +14,7 @@
     layout = {
       "bar.layouts" = {
         "*" = {
-          left = [ "dashboard" "workspaces" "systray" "windowtitle" ];
+          left = [ "dashboard" "workspaces" "windowtitle" "systray" ];
           middle = [ "media" ];
           right = [
             "clock"
@@ -34,7 +35,10 @@
     # Default: <same as gui>
     settings = {
       bar.launcher.autoDetectIcon = true;
+
       bar.workspaces.show_icons = true;
+      # Mouse wheel scrool down for the next workspace.
+      bar.workspaces.reverse_scroll = true;
 
       bar.clock.format = "%H:%M";
       bar.clock.showIcon = false;
@@ -61,9 +65,9 @@
       menus.dashboard.shortcuts.left.shortcut4.command =
         "pkill fuzzel || fuzzel --show drun";
 
-      bar.windowtitle.icon = false;
+      bar.windowtitle.icon = true;
 
-      bar.network.label = false;
+      bar.network.label = true;
       bar.network.showWifiInfo = true;
       bar.network.truncation_size = 5;
 
@@ -71,7 +75,7 @@
 
       theme.bar.transparent = true;
       theme.bar.scaling = 90;
-      theme.bar.buttons.background_opacity = 90;
+      theme.bar.opacity = 90;
       theme.bar.outer_spacing = "0em";
       theme.bar.buttons.y_margins = "0.2em";
       theme.bar.margin_sides = "0em";

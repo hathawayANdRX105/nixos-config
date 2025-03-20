@@ -15,7 +15,6 @@
     gnuplot
     wl-clipboard # fix the copy&paste disfunction in helix
     brightnessctl # adjust the brightness of screen
-    # lshw # nvidia prime:show the configuration of Bus ID value
 
     # find 
     fzf
@@ -31,7 +30,7 @@
     yesplaymusic # music player
     floorp # browser
     nekoray # proxy
-    # wechat-uos # wechat
+    wechat-uos # wechat
     # p3x-onenote # onenote for linux
 
     unzip

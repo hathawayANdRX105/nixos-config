@@ -51,4 +51,5 @@ $env.config.render_right_prompt_on_last_line = true
 zoxide init nushell | save -f ~/.zoxide.nu
 
 # this path contain all the configuration file setup by home-manager
-$env.HOME_CONFIG_DIR = $"($env.HOME)/.nixos-config/home/config"
+$env.MY_HOME_CONFIG_DIR = $"($env.HOME)/.nixos-config/home/config"
+$env.MY_HOME_BIN_DIR = $"($env.HOME)/.nixos-config/home/bin"

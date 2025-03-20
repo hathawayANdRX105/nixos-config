@@ -26,19 +26,15 @@
       "$mainMod" = "SUPER";
 
       exec-once = [
-        # "fcitx5 &"
-        "hypridle &"
-        "swww-daemon && swww img /etc/nixos/wallpaper/miku.jpg &"
-        "hyprpanel &"
-        # "waybar &"
-        "hyprctl setcursor Bibata-Modern-Ice 24 &"
-
-        # "[workspace 5 silent] yesplaymusic"
+        "hypridle"
+        "hyprpanel"
+        "swww-daemon | swww img /etc/nixos/wallpaper/miku.jpg"
+        "hyprctl setcursor Bibata-Modern-Ice 24"
         "[workspace 5 silent] nekoray"
-        # "[workspace 2 silent] wechat-uos"
-        "[workspace 1 silent] alacritty"
+        "[workspace 5 silent] yesplaymusic"
+        "[workspace 1 silent] wechat-uos"
         "[workspace 1 silent] floorp"
-        "sleep 5 && hyprctl dispatch workspace 1" # lastly focus workspace 1
+        "sleep 10sec | hyprctl dispatch workspace 1 | alacritty"
       ];
 
       input = {
@@ -83,11 +79,11 @@
       decoration = {
         rounding = 5;
 
-        active_opacity = 0.96;
-        inactive_opacity = 0.96;
+        active_opacity = 0.93;
+        inactive_opacity = 0.93;
 
-        dim_inactive = true;
-        dim_strength = 0;
+        dim_inactive = false;
+        # dim_strength = 0;
         # dim_strength = 7.5e-2;
 
         blur.enabled = false;
@@ -121,23 +117,6 @@
         ];
       };
 
-      bindn = [
-        # use `wev` or `showkey` find the keycode
-        ", XF86AudioPrev, execr, hyprctl dispatch sendshortcut CTRL, left,  class:yesplaymusic"
-        ", XF86AudioNext, execr, hyprctl dispatch sendshortcut CTRL, right, class:yesplaymusic"
-        ", XF86AudioPlay,execr, hyprctl dispatch sendshortcut CTRL, P, class:yesplaymusic"
-
-        "CTRL SHIFT, KP_6, execr, hyprctl dispatch sendshortcut CTRL, left,  class:yesplaymusic"
-        "CTRL SHIFT, KP_4, execr, hyprctl dispatch sendshortcut CTRL, right, class:yesplaymusic"
-        "CTRL SHIFT, KP_8, execr, hyprctl dispatch sendshortcut CTRL, up,  class:yesplaymusic"
-        "CTRL SHIFT, KP_2, execr, hyprctl dispatch sendshortcut CTRL, down, class:yesplaymusic"
-        "CTRL SHIFT, KP_5, execr, hyprctl dispatch sendshortcut CTRL, P,     class:yesplaymusic"
-        # love
-        "CTRL SHIFT, KP_Add, execr, hyprctl dispatch sendshortcut CTRL, L,     class:yesplaymusic"
-        # minimize
-        "CTRL SHIFT, KP_Subtract, execr, hyprctl dispatch sendshortcut CTRL, M,     class:yesplaymusic"
-      ];
-
       bindel = [
         # media and volume controls
         # fn-f11/f12
@@ -161,7 +140,19 @@
         # fuzzel
         "$mainMod, Tab, exec, pkill fuzzel || fuzzel --show drun"
 
+        # kill process
         "$mainMod, Q, killactive,"
+        "$mainMod, W, closewindow"
+
+        # grave -> `
+        # "ALT, grave, togglespecialworkspace, magic"
+        # "ALT, grave, movetoworkspace, +0, class:wechat"
+        # "ALT, grave, togglespecialworkspace, magic"
+        # "ALT, grave, movetoworkspace, special:magic"
+        # "ALT, grave, togglespecialworkspace, magic"
+        "ALT, grave, execr, nu -e toggle_wechat"
+
+        # "$mainMod, A, execr, nu ~/tmp.nu"
 
         "$mainMod, F11, fullscreen, 0"
         "$mainMod, F12, fullscreen, 1"
@@ -169,10 +160,10 @@
         # ", F12, fullscreen, 1"
 
         # switch focus
-        "$mainMod, left, movefocus, l"
+        "$mainMod, left,  movefocus, l"
         "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+        "$mainMod, up,    movefocus, u"
+        "$mainMod, down,  movefocus, d"
         "$mainMod, H, movefocus, l"
         "$mainMod, L, movefocus, r"
         "$mainMod, K, movefocus, u"
@@ -213,6 +204,21 @@
         "$mainMod SHIFT, 3, movetoworkspace, 3"
         "$mainMod SHIFT, 4, movetoworkspace, 4"
         "$mainMod SHIFT, 5, movetoworkspace, 5"
+
+        # use `wev` or `showkey` find the keycode
+        ", XF86AudioPrev, execr, hyprctl dispatch sendshortcut CTRL, left,  class:yesplaymusic"
+        ", XF86AudioNext, execr, hyprctl dispatch sendshortcut CTRL, right, class:yesplaymusic"
+        ", XF86AudioPlay,execr, hyprctl dispatch sendshortcut CTRL, P, class:yesplaymusic"
+
+        "CTRL SHIFT, KP_6, execr, hyprctl dispatch sendshortcut CTRL, left,  class:yesplaymusic"
+        "CTRL SHIFT, KP_4, execr, hyprctl dispatch sendshortcut CTRL, right, class:yesplaymusic"
+        "CTRL SHIFT, KP_8, execr, hyprctl dispatch sendshortcut CTRL, up,  class:yesplaymusic"
+        "CTRL SHIFT, KP_2, execr, hyprctl dispatch sendshortcut CTRL, down, class:yesplaymusic"
+        "CTRL SHIFT, KP_5, execr, hyprctl dispatch sendshortcut CTRL, P,     class:yesplaymusic"
+        # love
+        "CTRL SHIFT, KP_Add, execr, hyprctl dispatch sendshortcut CTRL, L,     class:yesplaymusic"
+        # minimize
+        "CTRL SHIFT, KP_Subtract, execr, hyprctl dispatch sendshortcut CTRL, M,     class:yesplaymusic"
       ];
 
       # windowrule
@@ -223,19 +229,15 @@
         "float,mpv"
         "center,mpv"
         "size 1200 725,mpv"
+        "idleinhibit focus,mpv"
+
         "pin,fuzzel"
         "float,fuzzel"
         "noborder,fuzzel"
-        "idleinhibit focus,mpv"
-        "float,wechat-uos"
-        "size 900 700,class:wechat"
-        "float,udiskie"
-        "float,title:^(Transmission)$"
-        "float,title:^(Volume Control)$"
-        "float,title:^(Firefox — Sharing Indicator)$"
-        "move 0 0,title:^(Firefox — Sharing Indicator)$"
-        "size 700 450,title:^(Volume Control)$"
-        "move 40 55%,title:^(Volume Control)$"
+
+        # "float,yesplaymusic"
+        # "center,yesplaymusic"
+        # "noborder,yesplaymusic"
       ];
 
       # windowrulev2
@@ -245,22 +247,31 @@
         "pin, title:^(Picture-in-Picture)$"
         "opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
         "opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
-        "opacity 0.9 0.9,title:^(.*YesPlayMusic.*)$"
-        "opacity 0.98 override 0.98 override, title:^(floorp)$"
+        # "opacity 0.9 0.9,class:yesplaymusic"
         "opacity 0.98 override 0.98 override, class:^(floorp)$"
         "idleinhibit focus, class:^(mpv)$"
         "idleinhibit fullscreen, class:^(floorp)$"
-        "float,class:^(file_progress)$"
-        "float,class:^(confirm)$"
-        "float,class:^(dialog)$"
-        "float,class:^(download)$"
-        "float,class:^(notification)$"
-        "float,class:^(error)$"
-        "float,class:^(confirmreset)$"
-        "float,title:^(Open File)$"
-        "float,title:^(branchdialog)$"
-        "float,title:^(Confirm to replace files)$"
-        "float,title:^(File Operation Progress)$"
+
+        "float, class:^(file_progress)$"
+        "float, class:^(confirm)$"
+        "float, class:^(dialog)$"
+        "float, class:^(download)$"
+        "float, class:^(notification)$"
+        "float, class:^(error)$"
+        "float, class:^(confirmreset)$"
+        "float, title:^(Open File)$"
+        "float, title:^(Confirm to replace files)$"
+        "float, title:^(File Operation Progress)$"
+
+        "float, class:floorp, title:^Extension.*沙拉查词.*"
+        "noborder, class:floorp, title:^Extension.*沙拉查词.*"
+        "idleinhibit focus, class:floorp, title:^Extension.*沙拉查词.*"
+
+        "float, class:wechat"
+        "center, class:wechat"
+        "noborder, class:wechat"
+        "idleinhibit focus, class:wechat"
+        "opacity 1.0 1.0, class:wechat"
       ];
 
     };

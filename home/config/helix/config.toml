@@ -8,9 +8,9 @@ cursorline = true
 end-of-line-diagnostics = "error"
 true-color = true
 
-[editor.auto-save.after-delay]
-enable = true
-timeout = 10000
+[editor.auto-save]
+after-delay.enable = true
+after-delay.timeout = 3000
 
 [editor.cursor-shape]
 insert = "bar"
@@ -58,9 +58,6 @@ C-l = "delete_char_forward"
 S-ret = "open_below"
 C-ret = "open_above"
 
-tab = "move_parent_node_end"
-S-tab = "move_parent_node_start"
-
 C-d = "no_op"
 
 C-c = "yank_to_clipboard"
@@ -97,7 +94,9 @@ S-up = "extend_line_up"
 "C-'" = "goto_word"
 "C-/" = "toggle_comments"
 "C-;" = "code_action"
+
 "C-`" = "switch_to_uppercase"
+"S-`" = "switch_to_lowercase"
 
 "C-[" = "unindent"
 "C-]" = "indent"

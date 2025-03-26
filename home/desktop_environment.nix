@@ -28,13 +28,14 @@
       exec-once = [
         "hypridle"
         "hyprpanel"
+        "fcitx5"
         "swww-daemon | swww img /etc/nixos/wallpaper/miku.jpg"
         "hyprctl setcursor Bibata-Modern-Ice 24"
         "[workspace 5 silent] nekoray"
         "[workspace 5 silent] yesplaymusic"
         "[workspace 1 silent] wechat-uos"
-        "[workspace 1 silent] floorp"
-        "sleep 10sec | hyprctl dispatch workspace 1 | alacritty"
+        "[workspace 1] floorp"
+        "[workspace 1 silent] alacritty"
       ];
 
       input = {
@@ -145,14 +146,7 @@
         "$mainMod, W, closewindow"
 
         # grave -> `
-        # "ALT, grave, togglespecialworkspace, magic"
-        # "ALT, grave, movetoworkspace, +0, class:wechat"
-        # "ALT, grave, togglespecialworkspace, magic"
-        # "ALT, grave, movetoworkspace, special:magic"
-        # "ALT, grave, togglespecialworkspace, magic"
         "ALT, grave, execr, nu -e toggle_wechat"
-
-        # "$mainMod, A, execr, nu ~/tmp.nu"
 
         "$mainMod, F11, fullscreen, 0"
         "$mainMod, F12, fullscreen, 1"
@@ -235,8 +229,11 @@
         "float,fuzzel"
         "noborder,fuzzel"
 
-        # "float,yesplaymusic"
-        # "center,yesplaymusic"
+        "float, wechat"
+        # "noborder, wechat"
+        "idleinhibit focus, wechat"
+        "opacity 1.0 1.0, wechat"
+
         # "noborder,yesplaymusic"
       ];
 
@@ -247,7 +244,6 @@
         "pin, title:^(Picture-in-Picture)$"
         "opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
         "opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
-        # "opacity 0.9 0.9,class:yesplaymusic"
         "opacity 0.98 override 0.98 override, class:^(floorp)$"
         "idleinhibit focus, class:^(mpv)$"
         "idleinhibit fullscreen, class:^(floorp)$"
@@ -264,14 +260,7 @@
         "float, title:^(File Operation Progress)$"
 
         "float, class:floorp, title:^Extension.*沙拉查词.*"
-        "noborder, class:floorp, title:^Extension.*沙拉查词.*"
         "idleinhibit focus, class:floorp, title:^Extension.*沙拉查词.*"
-
-        "float, class:wechat"
-        "center, class:wechat"
-        "noborder, class:wechat"
-        "idleinhibit focus, class:wechat"
-        "opacity 1.0 1.0, class:wechat"
       ];
 
     };

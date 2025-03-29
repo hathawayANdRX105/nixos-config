@@ -6,7 +6,7 @@
     enable = true;
     hyprland.enable = true;
     overwrite.enable = true;
-    theme = "catppuccin_mocha";
+    theme = "monochrome_vivid";
 
     # Configure bar layouts for monitors.
     # See 'https://hyprpanel.com/configuration/panel.html'.
@@ -14,16 +14,9 @@
     layout = {
       "bar.layouts" = {
         "*" = {
-          left = [ "dashboard" "workspaces" "windowtitle" "systray" ];
+          left = [ "dashboard" "workspaces" "systray" ];
           middle = [ "media" ];
-          right = [
-            "clock"
-            "volume"
-            "network"
-            "kbinput"
-            "bluetooth"
-            "notifications"
-          ];
+          right = [ "clock" "volume" "bluetooth" "notifications" ];
         };
       };
     };
@@ -42,7 +35,7 @@
 
       bar.clock.format = "%H:%M";
       bar.clock.showIcon = false;
-      bar.clock.showTime = true;
+      bar.clock.icon = "";
 
       bar.volume.scrollUp = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+";
       bar.volume.scrollDown = "wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-";
@@ -65,23 +58,23 @@
       menus.dashboard.shortcuts.left.shortcut4.command =
         "pkill fuzzel || fuzzel --show drun";
 
-      bar.windowtitle.icon = true;
-
       bar.network.label = true;
       bar.network.showWifiInfo = true;
       bar.network.truncation_size = 5;
 
       bar.notifications.hideCountWhenZero = true;
 
-      theme.bar.transparent = true;
-      theme.bar.scaling = 90;
-      theme.bar.opacity = 90;
+      theme.bar.opacity = 88;
+      theme.bar.border.width = "0em";
+      theme.bar.buttons.radius = "0.4em";
+      theme.bar.buttons.y_margins = "0em";
+
       theme.bar.outer_spacing = "0em";
-      theme.bar.buttons.y_margins = "0.2em";
       theme.bar.margin_sides = "0em";
+      theme.bar.margin_top = "0em";
 
       theme.font = {
-        name = "JetBrainsMono Nerd Font"; # TODO
+        name = "LXGW WenKai Mono";
         size = "14px";
       };
     };

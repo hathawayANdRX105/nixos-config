@@ -82,6 +82,8 @@
       noto-fonts-cjk-sans
       noto-fonts-emoji
       wqy_zenhei
+      sarasa-gothic # 更纱黑体
+      lxgw-wenkai
     ];
   };
 

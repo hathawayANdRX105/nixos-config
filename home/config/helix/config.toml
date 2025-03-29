@@ -1,4 +1,5 @@
-theme = "base16_transparent"
+theme = "fleet_dark"
+
 [editor]
 bufferline = "always"
 completion-replace = true

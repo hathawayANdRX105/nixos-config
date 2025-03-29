@@ -118,6 +118,12 @@
         ];
       };
 
+      # no comsume the shortkey
+      bindn = [
+        # open the shala dictionary
+        "ALT, Q, execr, nu -e floorp_shala_query"
+      ];
+
       bindel = [
         # media and volume controls
         # fn-f11/f12
@@ -132,6 +138,9 @@
       ];
 
       bind = [
+        # toggle floating
+        "$mainMod, mouse:274, togglefloating"
+
         # terminal
         "$mainMod, Return, exec, alacritty"
 
@@ -228,13 +237,6 @@
         "pin,fuzzel"
         "float,fuzzel"
         "noborder,fuzzel"
-
-        "float, wechat"
-        # "noborder, wechat"
-        "idleinhibit focus, wechat"
-        "opacity 1.0 1.0, wechat"
-
-        # "noborder,yesplaymusic"
       ];
 
       # windowrulev2
@@ -244,9 +246,7 @@
         "pin, title:^(Picture-in-Picture)$"
         "opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
         "opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
-        "opacity 0.98 override 0.98 override, class:^(floorp)$"
         "idleinhibit focus, class:^(mpv)$"
-        "idleinhibit fullscreen, class:^(floorp)$"
 
         "float, class:^(file_progress)$"
         "float, class:^(confirm)$"
@@ -259,8 +259,20 @@
         "float, title:^(Confirm to replace files)$"
         "float, title:^(File Operation Progress)$"
 
-        "float, class:floorp, title:^Extension.*沙拉查词.*"
-        "idleinhibit focus, class:floorp, title:^Extension.*沙拉查词.*"
+        # use the script to make the window floating.
+        "idleinhibit focus, title:.*沙拉.*"
+        "opacity 1.0 override 1.0 override, title:.*沙拉.*"
+
+        "float, title:Fcitx Configuration"
+        "noborder, title:Fcitx Configuration"
+        "size 1000 650, title:Fcitx Configuration"
+        "opacity 1.0 1.0, title:Fcitx Configuration"
+
+        "float, initialclass:wechat"
+        "noborder, initialclass:wechat"
+        "opacity 1.0 override 1.0 override, initialclass:wechat"
+        "size 1000 750, initialtitle:微信"
+        "idleinhibit focus, initialtitle:微信"
       ];
 
     };

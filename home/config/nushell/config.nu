@@ -49,3 +49,4 @@ alias nix-clean = sudo nix-collect-garbage | sudo nix-collect-garbage -d | sudo 
 alias nix-flake-update = sudo nix flake update --flake ~/.nixos-config#
 alias nix-switch = sudo nixos-rebuild switch
 
+alias floorp_shala_query = nu $"($env.MY_HOME_BIN_DIR)/floorp_shala_query.nu"

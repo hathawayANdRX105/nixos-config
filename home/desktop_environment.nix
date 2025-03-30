@@ -137,6 +137,28 @@
         "$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
       ];
 
+      bindr = [
+        # use `wev` or `showkey` find the keycode
+        ", XF86AudioPrev, execr, playerctl next"
+        ", XF86AudioNext, execr, playerctl previous"
+        ", XF86AudioPlay, execr, playerctl play-pause"
+
+        "Control_L&ALT_L, KP_6, sendshortcut, CTRL, Left, class:yesplaymusic"
+        "Control_L&ALT_L, KP_4, sendshortcut, CTRL, Right, class:yesplaymusic"
+        "Control_L&ALT_L, KP_8, sendshortcut, CTRL, Up, class:yesplaymusic"
+        "Control_L&ALT_L, KP_2, sendshortcut, CTRL, Down, class:yesplaymusic"
+        "Control_L&ALT_L, KP_5, sendshortcut, CTRL, P, class:yesplaymusic"
+
+        "Control_L&ALT_L, KP_Right, sendshortcut, CTRL, Left, class:yesplaymusic"
+        "Control_L&ALT_L, KP_Left,  sendshortcut, CTRL, Right, class:yesplaymusic"
+        "Control_L&ALT_L, KP_Up,    sendshortcut, CTRL, Up, class:yesplaymusic"
+        "Control_L&ALT_L, KP_Down,  sendshortcut, CTRL, Down, class:yesplaymusic"
+        "Control_L&ALT_L, KP_Begin, sendshortcut, CTRL, P, class:yesplaymusic"
+
+        # love
+        "Control_L&ALT_L, KP_ADD, sendshortcut, CTRL, L, class:yesplaymusic"
+      ];
+
       bind = [
         # toggle floating
         "$mainMod, mouse:274, togglefloating"
@@ -207,21 +229,6 @@
         "$mainMod SHIFT, 3, movetoworkspace, 3"
         "$mainMod SHIFT, 4, movetoworkspace, 4"
         "$mainMod SHIFT, 5, movetoworkspace, 5"
-
-        # use `wev` or `showkey` find the keycode
-        ", XF86AudioPrev, execr, hyprctl dispatch sendshortcut CTRL, left,  class:yesplaymusic"
-        ", XF86AudioNext, execr, hyprctl dispatch sendshortcut CTRL, right, class:yesplaymusic"
-        ", XF86AudioPlay,execr, hyprctl dispatch sendshortcut CTRL, P, class:yesplaymusic"
-
-        "CTRL SHIFT, KP_6, execr, hyprctl dispatch sendshortcut CTRL, left,  class:yesplaymusic"
-        "CTRL SHIFT, KP_4, execr, hyprctl dispatch sendshortcut CTRL, right, class:yesplaymusic"
-        "CTRL SHIFT, KP_8, execr, hyprctl dispatch sendshortcut CTRL, up,  class:yesplaymusic"
-        "CTRL SHIFT, KP_2, execr, hyprctl dispatch sendshortcut CTRL, down, class:yesplaymusic"
-        "CTRL SHIFT, KP_5, execr, hyprctl dispatch sendshortcut CTRL, P,     class:yesplaymusic"
-        # love
-        "CTRL SHIFT, KP_Add, execr, hyprctl dispatch sendshortcut CTRL, L,     class:yesplaymusic"
-        # minimize
-        "CTRL SHIFT, KP_Subtract, execr, hyprctl dispatch sendshortcut CTRL, M,     class:yesplaymusic"
       ];
 
       # windowrule
@@ -263,10 +270,10 @@
         "idleinhibit focus, title:.*沙拉.*"
         "opacity 1.0 override 1.0 override, title:.*沙拉.*"
 
-        "float, title:Fcitx Configuration"
-        "noborder, title:Fcitx Configuration"
-        "size 1000 650, title:Fcitx Configuration"
-        "opacity 1.0 1.0, title:Fcitx Configuration"
+        "float, class:org.fcitx."
+        "noborder, class:org.fcitx."
+        "opacity 1.0 override 1.0 override, class:org.fcitx."
+        "size 1000 650, initialtitle:Fcitx Configuration"
 
         "float, initialclass:wechat"
         "noborder, initialclass:wechat"

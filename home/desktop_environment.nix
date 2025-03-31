@@ -35,7 +35,7 @@
         "[workspace 5 silent] yesplaymusic"
         "[workspace 1 silent] wechat-uos"
         "[workspace 1] floorp"
-        "[workspace 1 silent] alacritty"
+        # "[workspace 1 silent] alacritty"
       ];
 
       input = {
@@ -51,6 +51,9 @@
         gaps_in = 2;
         gaps_out = 2;
         border_size = 0;
+        no_border_on_floating = true;
+        resize_on_border = true;
+        extend_border_grab_area = 15;
 
         "col.active_border" = "rgb(cba6f7) rgb(94e2d5) 45deg";
         "col.inactive_border" = "0x00000000";
@@ -68,13 +71,10 @@
       };
 
       dwindle = {
-        # no_gaps_when_only = true;
-        force_split = 0;
+        force_split = 2;
         special_scale_factor = 1.0;
-        split_width_multiplier = 1.0;
         use_active_for_splits = true;
-        pseudotile = "yes";
-        preserve_split = "yes";
+        pseudotile = true;
       };
 
       decoration = {
@@ -84,10 +84,8 @@
         inactive_opacity = 0.93;
 
         dim_inactive = false;
-        # dim_strength = 0;
-        # dim_strength = 7.5e-2;
-
         blur.enabled = false;
+        shadow.enabled = false;
       };
 
       animations = {
@@ -98,13 +96,16 @@
           "easeOutCirc, 0, 0.55, 0.45, 1"
           "easeOutCubic, 0.33, 1, 0.68, 1"
           "easeinoutsine, 0.37, 0, 0.63, 1"
+
+          "easeInOutExpo, 0.87, 0, 0.13, 1"
+          "easeOutExpo, 0.16, 1, 0.3, 1"
         ];
 
         animation = [
           # Windows
-          "windowsIn, 1, 3, easeOutCubic, popin 30%"
-          "windowsOut, 1, 3, fluent_decel, popin, 70%"
-          "windowsMove, 1, 2, easeinoutsine, slide"
+          "windowsIn, 1, 3, easeOutExpo, popin 30%"
+          "windowsOut, 1, 3, fluent_decel, popin, 80%"
+          "windowsMove, 1, 2, easeInOutExpo, slide"
 
           # Fade
           "fadeIn, 1, 3, easeOutCubic"
@@ -143,14 +144,14 @@
         ", XF86AudioNext, execr, playerctl previous"
         ", XF86AudioPlay, execr, playerctl play-pause"
 
-        "Control_L&ALT_L, KP_6, sendshortcut, CTRL, Left, class:yesplaymusic"
-        "Control_L&ALT_L, KP_4, sendshortcut, CTRL, Right, class:yesplaymusic"
+        "Control_L&ALT_L, KP_4, sendshortcut, CTRL, Left, class:yesplaymusic"
+        "Control_L&ALT_L, KP_6, sendshortcut, CTRL, Right, class:yesplaymusic"
         "Control_L&ALT_L, KP_8, sendshortcut, CTRL, Up, class:yesplaymusic"
         "Control_L&ALT_L, KP_2, sendshortcut, CTRL, Down, class:yesplaymusic"
         "Control_L&ALT_L, KP_5, sendshortcut, CTRL, P, class:yesplaymusic"
 
-        "Control_L&ALT_L, KP_Right, sendshortcut, CTRL, Left, class:yesplaymusic"
-        "Control_L&ALT_L, KP_Left,  sendshortcut, CTRL, Right, class:yesplaymusic"
+        "Control_L&ALT_L, KP_Left, sendshortcut, CTRL, Left, class:yesplaymusic"
+        "Control_L&ALT_L, KP_Right,  sendshortcut, CTRL, Right, class:yesplaymusic"
         "Control_L&ALT_L, KP_Up,    sendshortcut, CTRL, Up, class:yesplaymusic"
         "Control_L&ALT_L, KP_Down,  sendshortcut, CTRL, Down, class:yesplaymusic"
         "Control_L&ALT_L, KP_Begin, sendshortcut, CTRL, P, class:yesplaymusic"
@@ -244,6 +245,8 @@
         "pin,fuzzel"
         "float,fuzzel"
         "noborder,fuzzel"
+
+        "opacity 1.0 override 1.0 override, steam"
       ];
 
       # windowrulev2

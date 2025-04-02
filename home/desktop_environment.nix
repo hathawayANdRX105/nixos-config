@@ -31,11 +31,11 @@
         "fcitx5"
         "swww-daemon | swww img /etc/nixos/wallpaper/miku.jpg"
         "hyprctl setcursor Bibata-Modern-Ice 24"
-        "[workspace 5 silent] nekoray"
-        "[workspace 5 silent] yesplaymusic"
-        "[workspace 1 silent] wechat-uos"
-        "[workspace 1] floorp"
-        # "[workspace 1 silent] alacritty"
+        "[workspace 5 ] wechat-uos"
+        "[workspace 1 silent] floorp"
+        "[workspace 2 silent] alacritty"
+        "[workspace 3 silent] yesplaymusic"
+        "[workspace 4 silent] nekoray"
       ];
 
       input = {
@@ -49,7 +49,7 @@
       general = {
         layout = "dwindle";
         gaps_in = 2;
-        gaps_out = 2;
+        gaps_out = 0;
         border_size = 0;
         no_border_on_floating = true;
         resize_on_border = true;
@@ -78,7 +78,7 @@
       };
 
       decoration = {
-        rounding = 5;
+        rounding = 0;
 
         active_opacity = 0.93;
         inactive_opacity = 0.93;
@@ -130,12 +130,12 @@
         # fn-f11/f12
         ", XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%-"
         ", XF86AudioRaiseVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 2%+"
-        # laptop brigthness
+        # monitor's brigthness
         # win-[-/+]
-        "$mainMod, KP_Add, exec, brightnessctl set 2%+"
-        "$mainMod, KP_Subtract, exec, brightnessctl set 2%-"
-        "$mainMod, XF86MonBrightnessUp, exec, brightnessctl set 2%+"
-        "$mainMod, XF86MonBrightnessDown, exec, brightnessctl set 2%-"
+        "$mainMod, KP_Add, exec, sudo ddcutil setvcp 10 + 2"
+        "$mainMod, KP_Subtract, exec, sudo ddcutil setvcp 10 - 2"
+        "$mainMod, XF86MonBrightnessUp, exec, sudo ddcutil setvcp 10 + 2"
+        "$mainMod, XF86MonBrightnessDown, exec, sudo ddcutil setvcp 10 - 2"
       ];
 
       bindr = [
@@ -174,11 +174,8 @@
         "$mainMod, Tab, exec, pkill fuzzel || fuzzel --show drun"
 
         # kill process
-        "$mainMod, Q, killactive,"
+        "$mainMod, Q, killactive"
         "$mainMod, W, closewindow"
-
-        # grave -> `
-        "ALT, grave, execr, nu -e toggle_wechat"
 
         "$mainMod, F11, fullscreen, 0"
         "$mainMod, F12, fullscreen, 1"
@@ -218,18 +215,21 @@
         "$mainMod CTRL, J, resizeactive, 0 40"
 
         # Switch workspaces with mainMod + [0-9]
-        "$mainMod, 1, workspace, 1"
-        "$mainMod, 2, workspace, 2"
-        "$mainMod, 3, workspace, 3"
-        "$mainMod, 4, workspace, 4"
-        "$mainMod, 5, workspace, 5"
+        # grave -> `
+        # "ALT, grave, execr, nu -e toggle_wechat"
+        "ALT, grave, workspace, 5"
+        ", F1, workspace, 1"
+        ", F2, workspace, 2"
+        ", F3, workspace, 3"
+        ", F4, workspace, 4"
+        ", F5, workspace, 5"
 
         # Move active window to a workspace with mainMod + SHIFT + [0-9]
-        "$mainMod SHIFT, 1, movetoworkspace, 1"
-        "$mainMod SHIFT, 2, movetoworkspace, 2"
-        "$mainMod SHIFT, 3, movetoworkspace, 3"
-        "$mainMod SHIFT, 4, movetoworkspace, 4"
-        "$mainMod SHIFT, 5, movetoworkspace, 5"
+        "$mainMod , F1, movetoworkspace, 1"
+        "$mainMod , F2, movetoworkspace, 2"
+        "$mainMod , F3, movetoworkspace, 3"
+        "$mainMod , F4, movetoworkspace, 4"
+        "$mainMod , F5, movetoworkspace, 5"
       ];
 
       # windowrule
@@ -278,19 +278,19 @@
         "opacity 1.0 override 1.0 override, class:org.fcitx."
         "size 1000 650, initialtitle:Fcitx Configuration"
 
-        "float, initialclass:wechat"
-        "noborder, initialclass:wechat"
+        # "float, initialclass:wechat"
+        # "noborder, initialclass:wechat"
         "opacity 1.0 override 1.0 override, initialclass:wechat"
-        "size 1000 750, initialtitle:微信"
-        "idleinhibit focus, initialtitle:微信"
+        # "size 1000 750, initialtitle:微信"
+        # "idleinhibit focus, initialtitle:微信"
       ];
 
     };
 
     extraConfig = ''
-      # monitor=eDP-1, disable
+      monitor=eDP-1, disable
       # monitor=Unknown-1, disable # not for sure why this monistor exists
-      monitor=,preferred, auto, 1
+      monitor=HDMI-A-1,preferred, auto, 1
       # monitor=,preferred, auto, 1 # don't scale
       xwayland {
         force_zero_scaling = true

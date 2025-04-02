@@ -12,9 +12,21 @@
 
     # cmdline
     eza # ls replace
-    gnuplot
+    # matugen # theme color generation tool
+    # gnuplot # draw ploter
+    playerctl # media controller
     wl-clipboard # fix the copy&paste disfunction in helix
     brightnessctl # adjust the brightness of screen
+
+    wluma
+    # the brightness of wayland controller commandline tool
+    # `ddcutil environment` to find the problems
+    # it usually need permission, then remember add `sudo`.
+    ddcutil
+
+    bluez
+    bluez-alsa
+    bluez-tools
 
     # find 
     fzf
@@ -31,7 +43,8 @@
     floorp # browser
     nekoray # proxy
     wechat-uos # wechat
-    # p3x-onenote # onenote for linux
+    p3x-onenote # onenote for linux
+    # obsidian
 
     unzip
     wget

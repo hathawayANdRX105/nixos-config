@@ -48,6 +48,7 @@
 
     unzip
     wget
+    nix-prefetch-github # get the `rev` and `hash` info needed by nix fetch from github
 
     xdg-user-dirs # a tool to help manage user directories
   ]);

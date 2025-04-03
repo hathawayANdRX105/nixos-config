@@ -4,7 +4,9 @@
     userName = "hathawayANdRX105";
     userEmail = "2635254302@qq.com";
     extraConfig = {
-      url = { "https://gitclone.com/".insteadOf = "https://"; };
+      # url = { "https://gitclone.com/" = { insteadOf = "https://"; }; };
+      http.proxy = "http://127.0.0.1:2081";
+      https.proxy = "https://127.0.0.1:2081";
     };
   };
 

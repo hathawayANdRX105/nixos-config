@@ -6,20 +6,10 @@
     enable = true;
     hyprland.enable = true;
     overwrite.enable = true;
-    theme = "monochrome_vivid";
 
     # Configure bar layouts for monitors.
     # See 'https://hyprpanel.com/configuration/panel.html'.
     # Default: null
-    layout = {
-      "bar.layouts" = {
-        "*" = {
-          left = [ "dashboard" "workspaces" "systray" ];
-          middle = [ "media" ];
-          right = [ "clock" "volume" "bluetooth" "notifications" ];
-        };
-      };
-    };
 
     # Configure and theme almost all options from the GUI.
     # Options that require '{}' or '[]' are not yet implemented,
@@ -27,6 +17,17 @@
     # See 'https://hyprpanel.com/configuration/settings.html'.
     # Default: <same as gui>
     settings = {
+      theme.name = "monochrome_vivid";
+      layout = {
+        "bar.layouts" = {
+          "0" = {
+            left = [ "dashboard" "workspaces" "systray" ];
+            middle = [ "media" ];
+            right = [ "clock" "volume" "bluetooth" "notifications" ];
+          };
+        };
+      };
+
       bar.launcher.autoDetectIcon = true;
 
       bar.workspaces.show_icons = true;
@@ -63,6 +64,10 @@
       bar.network.truncation_size = 5;
 
       bar.notifications.hideCountWhenZero = true;
+
+      # TODO: matugen integration
+      # theme.matugen = true;
+      # wallpaper.image = "/etc/nixos/wallpaper/6.jpg.jpg";
 
       theme.bar.opacity = 88;
       theme.bar.border.width = "0em";

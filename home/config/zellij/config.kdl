@@ -50,15 +50,26 @@ keybinds {
         bind "Alt Shift l" "Alt Shift Right" { MovePane "Right"; }
 
         // scroll
-            bind "Alt Down" "Ctrl Down" { ScrollDown; }
-        bind "Alt Up"   "Ctrl Up"   { ScrollUp; }
-        bind "Alt f"  "Alt Right" "PageDown" { PageScrollDown; }
-        bind "Alt b"  "Alt Left"  "PageUp"   { PageScrollUp; }
+        bind "Alt j" "Ctrl Down" { ScrollDown; }
+        bind "Alt k" "Ctrl Up"   { ScrollUp; }
+        bind "PageDown" { PageScrollDown; }
+        bind "PageUp"   { PageScrollUp; }
         bind "Alt d" { HalfPageScrollDown; }
         bind "Alt u" { HalfPageScrollUp; }
-        }
+
+        // search mode
+        bind "Alt s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+    }
+
+    search {
+        bind "Ctrl s" { SwitchToMode "EnterSearch"; SearchInput 0; }
+        bind "Alt s"  { SwitchToMode "EnterSearch"; SearchInput 0; }
+    }
 
     shared_except "locked" {
+        // same as "Ctrl g"
+        bind "Ctrl c" { SwitchToMode "Locked"; }
+
         // create or close
         bind "Alt m" { ToggleFloatingPanes; }
         bind "Alt n" { NewPane; }
@@ -83,7 +94,6 @@ keybinds {
         bind "Alt 8" { GoToTab 8; }
         bind "Ctrl Tab" { ToggleTab; }
         
-
         // resize or change layout
         bind "Alt =" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
@@ -104,10 +114,10 @@ keybinds {
         // bind "Alt o" { MoveTab "Right"; }
 
         // scroll
-        bind "Alt Down" "Ctrl Down" { ScrollDown; }
-        bind "Alt Up"   "Ctrl Up"   { ScrollUp; }
-        bind "Alt f"  "Alt Right" "PageDown" { PageScrollDown; }
-        bind "Alt b"  "Alt Left"  "PageUp"   { PageScrollUp; }
+        bind "Alt j" "Ctrl Down" { ScrollDown; }
+        bind "Alt k" "Ctrl Up"   { ScrollUp; }
+        bind "PageDown" { PageScrollDown; }
+        bind "PageUp"   { PageScrollUp; }
         bind "Alt d" { HalfPageScrollDown; }
         bind "Alt u" { HalfPageScrollUp; }
 

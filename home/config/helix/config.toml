@@ -142,9 +142,9 @@ tab = "extend_parent_node_end"
 "]" = [":append-output echo ' '", "normal_mode"]
 
 [keys.normal."["]
-"[" = [":append-output echo ' '", "normal_mode"]
+"[" = [":insert-output echo ' '", "normal_mode"]
 
 [keys.insert.j]
 k = "normal_mode"
-j = [":insert-output echo 'j'", "move_char_right"]
+j= [":insert-output echo 'j'", "move_char_right"]
 

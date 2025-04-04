@@ -1,4 +1,6 @@
-{ inputs, config, pkgs, username, version, ... }: {
+{ inputs, config, pkgs, username, ... }:
+let homeVersion = "25.05";
+in {
   imports = [ inputs.home-manager.nixosModules.home-manager ];
 
   home-manager = {
@@ -27,9 +29,9 @@
 
       home.username = username;
       home.homeDirectory = "/home/${username}";
-
-      home.stateVersion = version;
+      home.stateVersion = homeVersion;
       programs.home-manager.enable = true;
+      home.enableNixpkgsReleaseCheck = false;
     };
   };
 

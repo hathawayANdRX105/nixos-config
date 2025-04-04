@@ -12,16 +12,16 @@ in {
 
       listener = [
         {
-          timeout = 300;
+          timeout = 60 * 5;
           on-timeout = "loginctl lock-session";
         }
         {
-          timeout = 360;
+          timeout = 60 * 10;
           on-timeout = "hyprctl dispatch dpms off";
           on-resume = "hyprctl dispatch dpms on";
         }
         {
-          timeout = 600;
+          timeout = 60 * 10;
           on-timeout = "systemctl suspend";
         }
       ];

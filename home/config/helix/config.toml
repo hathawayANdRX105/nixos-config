@@ -1,6 +1,7 @@
 theme = "fleet_dark"
 
 [editor]
+shell = ["nu", "-c"]
 bufferline = "always"
 completion-replace = true
 completion-timeout = 150
@@ -67,7 +68,7 @@ C-u = "redo"
 C-z = "undo"
 C-s = ":w"
 
-C-a = "goto_line_start"
+C-a = "goto_first_nonwhitespace"
 C-b = "move_char_left"
 C-f = "move_char_right"
 C-e = "goto_line_end_newline"
@@ -88,6 +89,9 @@ S-up = "extend_line_up"
 
 
 [keys.normal]
+# TODO: pass the shell expandation when it support.
+# A-y = ":sh nu -e 'reveal_in_yazi %{buffer_name}; exit;'"
+
 "A-," = ":buffer-previous"
 "A-." = ":buffer-next"
 

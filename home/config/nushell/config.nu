@@ -17,17 +17,12 @@ if $may_start {
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
-# auto start zellij
-# let zellij_is_active = pidof zellij | complete | $in.exit_code == 0 
-# if not $zellij_is_active  {
-# zellij --config $"($env.HOME_CONFIG_DIR)/zellij/config.kdl"
-# }
-
+# Automatically start zellij
 if 'ZELLIJ' not-in ($env | columns) {
   if 'ZELLIJ_AUTO_ATTACH' in ($env | columns) and $env.ZELLIJ_AUTO_ATTACH == 'true' {
-    zellij attach -c --config $"($env.MY_HOME_CONFIG_DIR)/zellij/config.kdl"
+    zellij attach -c --config $"($env.MY_HOME_CONFIG_DIR)/zellij/config.kdl" --layout $"($env.MY_HOME_CONFIG_DIR)/zellij/layouts/default.kdl"
   } else {
-    zellij --config $"($env.MY_HOME_CONFIG_DIR)/zellij/config.kdl"
+    zellij --config $"($env.MY_HOME_CONFIG_DIR)/zellij/config.kdl" --layout $"($env.MY_HOME_CONFIG_DIR)/zellij/layouts/default.kdl"
   }
   if 'ZELLIJ_AUTO_EXIT' in ($env | columns) and $env.ZELLIJ_AUTO_EXIT == 'true' {
     exit
@@ -46,7 +41,9 @@ alias ll = eza --icons  -a --group-directories-first -1 --no-user --long
 alias tree = eza --icons --tree --group-directories-first
 
 alias nix-clean = sudo nix-collect-garbage | sudo nix-collect-garbage -d | sudo rm /nix/var/nix/gcroots/auto/* | nix-collect-garbage | nix-collect-garbage -d
-alias nix-flake-update = sudo nix flake update --flake ~/.nixos-config#
-alias nix-switch = sudo nixos-rebuild switch
+alias nix-flake-update = sudo nix flake update --flake ~/.nixos-config# --option substituters "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+alias nix-switch = sudo nixos-rebuild switch --option substituters "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
 
 alias floorp_shala_query = nu $"($env.MY_HOME_BIN_DIR)/floorp_shala_query.nu"
+alias open_file_in_helix = nu $"($env.MY_HOME_BIN_DIR)/open_file_in_helix.nu"
+alias reveal_in_yazi     = nu $"($env.MY_HOME_BIN_DIR)/reveal_in_yazi.nu"

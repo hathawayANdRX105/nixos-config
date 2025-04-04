@@ -1,32 +1,24 @@
+default_shell "nu"
 default_mode "locked"
-simplified_ui true
-// default_layout "compact"
+default_layout "compact"
 copy_command "wl-copy"
-ui {
-	pane_frames {
-		rounded_corners true
-	}
-}
-
 show_startup_tips false
+show_release_notes false
 
 keybinds {
-	normal {
-
-	}
-	locked {
-		// create or close
-		bind "Alt m" { ToggleFloatingPanes; }
-	    bind "Alt n" { NewPane; }
+    locked {
+        // create or close
+        bind "Alt m" { ToggleFloatingPanes; }
+        bind "Alt n" { NewPane; }
         bind "Alt x" { CloseFocus; }
 
-		// movement
+        // movement
         bind "Alt h" "Alt Left"  { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
         bind "Alt j" "Alt Down"  { MoveFocus "Down"; }
         bind "Alt k" "Alt Up"    { MoveFocus "Up"; }
 
-	    bind "Alt [" { GoToPreviousTab; }
+        bind "Alt [" { GoToPreviousTab; }
         bind "Alt ]" { GoToNextTab; }
 
         bind "Alt 1" { GoToTab 1; }
@@ -40,7 +32,7 @@ keybinds {
         bind "Ctrl Tab" { ToggleTab; }
         
 
-		// resize or change layout
+        // resize or change layout
         bind "Alt =" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt 9" { PreviousSwapLayout; }
@@ -52,32 +44,33 @@ keybinds {
         bind "Alt F11" { ToggleFocusFullscreen;  }
 
         // adjust position
-		bind "Alt Shift h" "Alt Shift Left"  { MovePane "Left"; }
+        bind "Alt Shift h" "Alt Shift Left"  { MovePane "Left"; }
         bind "Alt Shift j" "Alt Shift Down"  { MovePane "Down"; }
         bind "Alt Shift k" "Alt Shift Up"    { MovePane "Up"; }
         bind "Alt Shift l" "Alt Shift Right" { MovePane "Right"; }
 
         // scroll
-    	bind "Alt Down" "Ctrl Down" { ScrollDown; }
+            bind "Alt Down" "Ctrl Down" { ScrollDown; }
         bind "Alt Up"   "Ctrl Up"   { ScrollUp; }
         bind "Alt f"  "Alt Right" "PageDown" { PageScrollDown; }
         bind "Alt b"  "Alt Left"  "PageUp"   { PageScrollUp; }
         bind "Alt d" { HalfPageScrollDown; }
         bind "Alt u" { HalfPageScrollUp; }
-	}
-	shared_except "locked" {
-		// create or close
-		bind "Alt m" { ToggleFloatingPanes; }
-	    bind "Alt n" { NewPane; }
+        }
+
+    shared_except "locked" {
+        // create or close
+        bind "Alt m" { ToggleFloatingPanes; }
+        bind "Alt n" { NewPane; }
         bind "Alt x" { CloseFocus; }
 
-		// movement
+        // movement
         bind "Alt h" "Alt Left"  { MoveFocusOrTab "Left"; }
         bind "Alt l" "Alt Right" { MoveFocusOrTab "Right"; }
         bind "Alt j" "Alt Down"  { MoveFocus "Down"; }
         bind "Alt k" "Alt Up"    { MoveFocus "Up"; }
 
-	    bind "Alt [" { GoToPreviousTab; }
+        bind "Alt [" { GoToPreviousTab; }
         bind "Alt ]" { GoToNextTab; }
 
         bind "Alt 1" { GoToTab 1; }
@@ -91,7 +84,7 @@ keybinds {
         bind "Ctrl Tab" { ToggleTab; }
         
 
-		// resize or change layout
+        // resize or change layout
         bind "Alt =" { Resize "Increase"; }
         bind "Alt -" { Resize "Decrease"; }
         bind "Alt 9" { PreviousSwapLayout; }
@@ -103,7 +96,7 @@ keybinds {
         bind "Alt F11" { ToggleFocusFullscreen; }
 
         // adjust position
-		bind "Alt Shift h" "Alt Shift Left"  { MovePane "Left"; }
+        bind "Alt Shift h" "Alt Shift Left"  { MovePane "Left"; }
         bind "Alt Shift j" "Alt Shift Down"  { MovePane "Down"; }
         bind "Alt Shift k" "Alt Shift Up"    { MovePane "Up"; }
         bind "Alt Shift l" "Alt Shift Right" { MovePane "Right"; }
@@ -111,14 +104,14 @@ keybinds {
         // bind "Alt o" { MoveTab "Right"; }
 
         // scroll
-    	bind "Alt Down" "Ctrl Down" { ScrollDown; }
+        bind "Alt Down" "Ctrl Down" { ScrollDown; }
         bind "Alt Up"   "Ctrl Up"   { ScrollUp; }
         bind "Alt f"  "Alt Right" "PageDown" { PageScrollDown; }
         bind "Alt b"  "Alt Left"  "PageUp"   { PageScrollUp; }
         bind "Alt d" { HalfPageScrollDown; }
         bind "Alt u" { HalfPageScrollUp; }
 
-		// disabled default keybindings
+        // disabled default keybindings
         bind "Alt f" { } // float panel
     }
 }
@@ -127,7 +120,7 @@ theme "catppuccin-mocha"
 
 themes {
     catppuccin-mocha {
-    	fg 1
+        fg 1
         bg 10
         black 20
         red 30

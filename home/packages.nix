@@ -36,6 +36,7 @@
     imv # image viwer
     mpv # video player
     xdg-desktop-portal-hyprland
+    rich-cli # Command Line Interface to Rich
 
     # desktop
     swww # wallpaper

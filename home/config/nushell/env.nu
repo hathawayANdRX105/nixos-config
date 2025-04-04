@@ -54,6 +54,9 @@ zoxide init nushell | save -f ~/.zoxide.nu
 $env.MY_HOME_CONFIG_DIR = $"($env.HOME)/.nixos-config/home/config"
 $env.MY_HOME_BIN_DIR = $"($env.HOME)/.nixos-config/home/bin"
 
+# yazi
+$env.YAZI_CONFIG_HOME = "~/.config/yazi"
+
 # fcitx
 $env.GTK_IM_MODULE = "fcitx"
 $env.QT_IM_MODULE = "fcitx"

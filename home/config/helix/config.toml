@@ -38,8 +38,6 @@ left = ["spinner", "spacer", "mode", "spacer", "diagnostics"]
 right = ["version-control", "position", "file-encoding", "spacer", "file-type"]
 
 [keys.insert]
-j = { k = "normal_mode" }
-
 # buffer movement
 "A-," = ":buffer-previous"
 "A-." = ":buffer-next"
@@ -139,3 +137,14 @@ d = ["yank_to_clipboard", "delete_selection"]
 
 S-tab = "extend_parent_node_start"
 tab = "extend_parent_node_end"
+
+[keys.normal."]"]
+"]" = [":append-output echo ' '", "normal_mode"]
+
+[keys.normal."["]
+"[" = [":append-output echo ' '", "normal_mode"]
+
+[keys.insert.j]
+k = "normal_mode"
+j = [":insert-output echo 'j'", "move_char_right"]
+
